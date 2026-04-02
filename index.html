@@ -48,12 +48,17 @@ section{padding:100px 0}
 .section-label{
   font-family:var(--mono);font-size:11px;letter-spacing:4px;text-transform:uppercase;
   color:var(--red);margin-bottom:8px;display:flex;align-items:center;gap:10px;
+  justify-content:center;
 }
 .section-label::before{content:'';width:24px;height:1px;background:var(--red)}
+.section-label::after{content:'';width:24px;height:1px;background:var(--red)}
 .section-title{
   font-family:var(--display);font-size:clamp(22px,3vw,32px);font-weight:700;
-  color:var(--text);margin-bottom:48px;letter-spacing:1px;
+  color:var(--text);margin-bottom:48px;letter-spacing:1px;text-align:center;
 }
+
+/* === BILINGUAL EN SUBTITLE === */
+.en{font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:2px;font-weight:400;letter-spacing:.5px;line-height:1.4}
 
 /* ===================== HERO ===================== */
 #hero{
@@ -230,7 +235,7 @@ section{padding:100px 0}
 .stat-label{font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:6px;letter-spacing:1px}
 
 /* ===================== PRIORITY ===================== */
-.priority-list{display:flex;flex-direction:column;gap:12px;max-width:700px}
+.priority-list{display:flex;flex-direction:column;gap:12px;max-width:700px;margin:0 auto}
 .priority-item{
   display:flex;align-items:center;gap:16px;padding:16px 20px;
   background:var(--bg2);border:1px solid #1a2332;border-radius:10px;
@@ -281,7 +286,7 @@ section{padding:100px 0}
 .shield-branch .shield-step{width:auto;flex:1;min-width:200px}
 
 /* ===================== BLAST RADIUS ===================== */
-.blast-list{display:flex;flex-direction:column;gap:12px;max-width:700px}
+.blast-list{display:flex;flex-direction:column;gap:12px;max-width:700px;margin:0 auto}
 .blast-item{
   display:flex;align-items:center;gap:16px;padding:16px 20px;
   background:var(--bg2);border:1px solid #1a2332;border-radius:10px;
@@ -357,7 +362,7 @@ section{padding:100px 0}
 /* ===================== TERMINAL ===================== */
 .terminal{
   background:#0a0c12;border:1px solid #1a2332;border-radius:12px;overflow:hidden;
-  max-width:720px;font-family:var(--mono);
+  max-width:720px;font-family:var(--mono);margin:0 auto;
 }
 .terminal-bar{
   display:flex;align-items:center;gap:8px;padding:12px 16px;
@@ -400,12 +405,12 @@ footer .ver{color:var(--red);font-weight:600}
     <div class="hero-badge"><span class="dot"></span>SYSTEM STATUS: OPERATIONAL</div>
     <span class="hero-icon">🦞</span>
     <h1 class="hero-title">无极龙虾军团</h1>
-    <p class="hero-sub">v6.12 · 正式版</p>
+    <p class="hero-sub">v6.12 · 正式版 · Production Ready</p>
     <div class="hero-stats">
-      <div class="hero-stat"><span class="num counter" data-target="40">0</span><span class="lbl">总单位</span></div>
-      <div class="hero-stat"><span class="num counter" data-target="38">0</span><span class="lbl">业务专家</span></div>
-      <div class="hero-stat"><span class="num counter" data-target="6">0</span><span class="lbl">作战师</span></div>
-      <div class="hero-stat"><span class="num counter" data-target="3">0</span><span class="lbl">监察机构</span></div>
+      <div class="hero-stat"><span class="num counter" data-target="40">0</span><span class="lbl">总单位 TOTAL</span></div>
+      <div class="hero-stat"><span class="num counter" data-target="38">0</span><span class="lbl">业务专家 EXPERTS</span></div>
+      <div class="hero-stat"><span class="num counter" data-target="6">0</span><span class="lbl">作战师 DIVISIONS</span></div>
+      <div class="hero-stat"><span class="num counter" data-target="3">0</span><span class="lbl">监察机构 OVERSIGHT</span></div>
     </div>
   </div>
   <div class="hero-scroll">▽ SCROLL TO EXPLORE</div>
@@ -419,20 +424,20 @@ footer .ver{color:var(--red);font-weight:600}
       <h2 class="section-title">指挥链 · COMMAND CHAIN</h2>
     </div>
     <div class="chain-wrapper reveal">
-      <div class="chain-node user-node"><div class="node-title">👤 用户 (EE37)</div><div class="node-desc">最高指挥权</div></div>
+      <div class="chain-node user-node"><div class="node-title">👤 用户 (EE37)</div><div class="node-desc">最高指挥权</div><div class="en">Supreme Command Authority</div></div>
       <div class="chain-arrow"></div>
-      <div class="chain-node command"><div class="node-title">🦞 阿极</div><div class="node-desc">总指挥 / 秘书 · 唯一对接窗口</div></div>
+      <div class="chain-node command"><div class="node-title">🦞 阿极</div><div class="node-desc">总指挥 / 秘书 · 唯一对接窗口</div><div class="en">Commander / Secretary · Sole Interface</div></div>
       <div class="chain-arrow"></div>
-      <div class="chain-node"><div class="node-title">🎖️ 参谋本部 (P-01)</div><div class="node-desc">需求分析 · 任务拆解 · 冲突仲裁 · 智能调度</div></div>
+      <div class="chain-node"><div class="node-title">🎖️ 参谋本部 (P-01)</div><div class="node-desc">需求分析 · 任务拆解 · 冲突仲裁 · 智能调度</div><div class="en">Analysis · Decomposition · Arbitration · Dispatch</div></div>
       <div class="chain-arrow"></div>
       <div class="chain-branch">
-        <div class="chain-node"><div class="node-title">⚔️ 六大作战师</div><div class="node-desc">24 名专家</div></div>
-        <div class="chain-node"><div class="node-title">🔒 安全局</div><div class="node-desc">7 名专家</div></div>
-        <div class="chain-node"><div class="node-title">📋 质监局</div><div class="node-desc">3 名专家</div></div>
-        <div class="chain-node"><div class="node-title">🗄️ 档案局</div><div class="node-desc">4 名专家</div></div>
+        <div class="chain-node"><div class="node-title">⚔️ 六大作战师</div><div class="node-desc">24 名专家</div><div class="en">6 Divisions · 24 Experts</div></div>
+        <div class="chain-node"><div class="node-title">🔒 安全局</div><div class="node-desc">7 名专家</div><div class="en">Security Bureau · 7 Experts</div></div>
+        <div class="chain-node"><div class="node-title">📋 质监局</div><div class="node-desc">3 名专家</div><div class="en">QA Bureau · 3 Experts</div></div>
+        <div class="chain-node"><div class="node-title">🗄️ 档案局</div><div class="node-desc">4 名专家</div><div class="en">Archives Bureau · 4 Experts</div></div>
       </div>
       <div class="chain-arrow"></div>
-      <div class="chain-node command"><div class="node-title">🦞 阿极汇总</div><div class="node-desc">结果汇报 → 用户</div></div>
+      <div class="chain-node command"><div class="node-title">🦞 阿极汇总</div><div class="node-desc">结果汇报 → 用户</div><div class="en">Summary Report → User</div></div>
     </div>
   </div>
 </section>
@@ -441,11 +446,11 @@ footer .ver{color:var(--red);font-weight:600}
 <section id="stats" style="padding-top:40px;padding-bottom:40px">
   <div class="container">
     <div class="stats-bar reveal">
-      <div class="stat-item" style="--stat-color:var(--red)"><div class="stat-num counter" data-target="38">0</div><div class="stat-label">业务专家</div></div>
-      <div class="stat-item" style="--stat-color:var(--cyan)"><div class="stat-num counter" data-target="2">0</div><div class="stat-label">指挥单位</div></div>
-      <div class="stat-item" style="--stat-color:var(--amber)"><div class="stat-num counter" data-target="40">0</div><div class="stat-label">总单位</div></div>
-      <div class="stat-item" style="--stat-color:var(--green)"><div class="stat-num counter" data-target="6">0</div><div class="stat-label">作战师</div></div>
-      <div class="stat-item" style="--stat-color:#AB47BC"><div class="stat-num counter" data-target="3">0</div><div class="stat-label">监察机构</div></div>
+      <div class="stat-item" style="--stat-color:var(--red)"><div class="stat-num counter" data-target="38">0</div><div class="stat-label">业务专家<br><span class="en">Experts</span></div></div>
+      <div class="stat-item" style="--stat-color:var(--cyan)"><div class="stat-num counter" data-target="2">0</div><div class="stat-label">指挥单位<br><span class="en">Command</span></div></div>
+      <div class="stat-item" style="--stat-color:var(--amber)"><div class="stat-num counter" data-target="40">0</div><div class="stat-label">总单位<br><span class="en">Total Units</span></div></div>
+      <div class="stat-item" style="--stat-color:var(--green)"><div class="stat-num counter" data-target="6">0</div><div class="stat-label">作战师<br><span class="en">Divisions</span></div></div>
+      <div class="stat-item" style="--stat-color:#AB47BC"><div class="stat-num counter" data-target="3">0</div><div class="stat-label">监察机构<br><span class="en">Oversight</span></div></div>
     </div>
   </div>
 </section>
@@ -469,11 +474,11 @@ footer .ver{color:var(--red);font-weight:600}
       <h2 class="section-title">任务优先级 · PRIORITY</h2>
     </div>
     <div class="priority-list reveal">
-      <div class="priority-item" style="--p-color:var(--red)"><span class="priority-tag">P0</span><span class="priority-name">安全事件 / 紧急召唤 / 数据风险</span><span class="priority-desc">CRITICAL</span></div>
-      <div class="priority-item" style="--p-color:var(--amber)"><span class="priority-tag">P1</span><span class="priority-name">用户实时指令</span><span class="priority-desc">HIGH</span></div>
-      <div class="priority-item" style="--p-color:var(--yellow)"><span class="priority-tag">P2</span><span class="priority-name">强制执行任务</span><span class="priority-desc">MEDIUM</span></div>
-      <div class="priority-item" style="--p-color:var(--cyan)"><span class="priority-tag">P3</span><span class="priority-name">定时任务</span><span class="priority-desc">NORMAL</span></div>
-      <div class="priority-item" style="--p-color:var(--gray)"><span class="priority-tag">P4</span><span class="priority-name">例行整理</span><span class="priority-desc">LOW</span></div>
+      <div class="priority-item" style="--p-color:var(--red)"><span class="priority-tag">P0</span><div class="priority-name">安全事件 / 紧急召唤 / 数据风险<div class="en">Security Incident / Emergency Call / Data Risk</div></div><span class="priority-desc">CRITICAL</span></div>
+      <div class="priority-item" style="--p-color:var(--amber)"><span class="priority-tag">P1</span><div class="priority-name">用户实时指令<div class="en">User Real-time Command</div></div><span class="priority-desc">HIGH</span></div>
+      <div class="priority-item" style="--p-color:var(--yellow)"><span class="priority-tag">P2</span><div class="priority-name">强制执行任务<div class="en">Forced Execution</div></div><span class="priority-desc">MEDIUM</span></div>
+      <div class="priority-item" style="--p-color:var(--cyan)"><span class="priority-tag">P3</span><div class="priority-name">定时任务<div class="en">Scheduled Task</div></div><span class="priority-desc">NORMAL</span></div>
+      <div class="priority-item" style="--p-color:var(--gray)"><span class="priority-tag">P4</span><div class="priority-name">例行整理<div class="en">Routine Maintenance</div></div><span class="priority-desc">LOW</span></div>
     </div>
   </div>
 </section>
@@ -488,51 +493,51 @@ footer .ver{color:var(--red);font-weight:600}
     <div class="pipeline-grid">
       <div class="pipeline-card reveal" style="--pl-color:var(--red)">
         <div class="pipeline-num">PIPELINE 01</div>
-        <div class="pipeline-name">软件产品全生命周期 <span class="flagship">旗舰</span></div>
-        <div class="pipeline-stages">情报侦察 → 产品规划 → 并行开发 → 质量关卡 → 加密发布 → 上线运营</div>
-        <div class="pipeline-lead">主导：第四师 · 协同：全军参与（6阶段）</div>
+        <div class="pipeline-name">软件产品全生命周期 <span class="flagship">旗舰</span><div class="en">Full Software Product Lifecycle</div></div>
+        <div class="pipeline-stages">情报侦察 → 产品规划 → 并行开发 → 质量关卡 → 加密发布 → 上线运营<div class="en">Intel → Planning → Dev → QA Gate → Encrypted Release → Ops</div></div>
+        <div class="pipeline-lead">主导：第四师 · 协同：全军参与（6阶段）<div class="en">Lead: Div.4 · All units (6 stages)</div></div>
       </div>
       <div class="pipeline-card reveal" style="--pl-color:var(--green)">
         <div class="pipeline-num">PIPELINE 02</div>
-        <div class="pipeline-name">ComfyUI 插件开发</div>
-        <div class="pipeline-stages">情报 → 开发 → 验证 → 发布</div>
-        <div class="pipeline-lead">主导：4-01 · 协同：五师+二师+安全局+一师+三师</div>
+        <div class="pipeline-name">ComfyUI 插件开发<div class="en">ComfyUI Plugin Development</div></div>
+        <div class="pipeline-stages">情报 → 开发 → 验证 → 发布<div class="en">Intel → Dev → Verify → Release</div></div>
+        <div class="pipeline-lead">主导：4-01 · 协同：五师+二师+安全局+一师+三师<div class="en">Lead: 4-01 · Div.5+2+Security+1+3</div></div>
       </div>
       <div class="pipeline-card reveal" style="--pl-color:var(--amber)">
         <div class="pipeline-num">PIPELINE 03</div>
-        <div class="pipeline-name">安全攻防</div>
-        <div class="pipeline-stages">防御加密 / 攻击逆向 / 安全评估</div>
-        <div class="pipeline-lead">主导：安全局 · 协同：五师+质监局+档案局</div>
+        <div class="pipeline-name">安全攻防<div class="en">Security Offense & Defense</div></div>
+        <div class="pipeline-stages">防御加密 / 攻击逆向 / 安全评估<div class="en">Defense & Encryption / Attack & Reverse / Assessment</div></div>
+        <div class="pipeline-lead">主导：安全局 · 协同：五师+质监局+档案局<div class="en">Lead: Security · Div.5+QA+Archives</div></div>
       </div>
       <div class="pipeline-card reveal" style="--pl-color:#AB47BC">
         <div class="pipeline-num">PIPELINE 04</div>
-        <div class="pipeline-name">小说创作</div>
-        <div class="pipeline-stages">创作 → 包装 → 推广</div>
-        <div class="pipeline-lead">主导：第一师 · 协同：五师+二师+三师+humanizer</div>
+        <div class="pipeline-name">小说创作<div class="en">Novel Writing</div></div>
+        <div class="pipeline-stages">创作 → 包装 → 推广<div class="en">Create → Package → Promote</div></div>
+        <div class="pipeline-lead">主导：第一师 · 协同：五师+二师+三师+humanizer<div class="en">Lead: Div.1 · Div.5+2+3+humanizer</div></div>
       </div>
       <div class="pipeline-card reveal" style="--pl-color:var(--cyan)">
         <div class="pipeline-num">PIPELINE 05</div>
-        <div class="pipeline-name">短剧 / 漫剧制作</div>
-        <div class="pipeline-stages">策划 → 制作 → 发行</div>
-        <div class="pipeline-lead">主导：三师+二师 · 协同：五师+安全局+质监局+档案局</div>
+        <div class="pipeline-name">短剧 / 漫剧制作<div class="en">Short Drama / Comic Production</div></div>
+        <div class="pipeline-stages">策划 → 制作 → 发行<div class="en">Plan → Produce → Distribute</div></div>
+        <div class="pipeline-lead">主导：三师+二师 · 协同：五师+安全局+质监局+档案局<div class="en">Lead: Div.3+2 · Div.5+Security+QA+Archives</div></div>
       </div>
       <div class="pipeline-card reveal" style="--pl-color:var(--yellow)">
         <div class="pipeline-num">PIPELINE 06</div>
-        <div class="pipeline-name">数据情报</div>
-        <div class="pipeline-stages">采集 → 分析 → 输出</div>
-        <div class="pipeline-lead">主导：第五师 · 协同：安全局+一师+二师+档案局</div>
+        <div class="pipeline-name">数据情报<div class="en">Data Intelligence</div></div>
+        <div class="pipeline-stages">采集 → 分析 → 输出<div class="en">Collect → Analyze → Output</div></div>
+        <div class="pipeline-lead">主导：第五师 · 协同：安全局+一师+二师+档案局<div class="en">Lead: Div.5 · Security+Div.1+2+Archives</div></div>
       </div>
       <div class="pipeline-card reveal" style="--pl-color:#E91E63">
         <div class="pipeline-num">PIPELINE 07</div>
-        <div class="pipeline-name">品牌建设</div>
-        <div class="pipeline-stages">调研 → 设计 → 传播</div>
-        <div class="pipeline-lead">主导：第二师 · 协同：五师+一师+三师+质监局</div>
+        <div class="pipeline-name">品牌建设<div class="en">Brand Building</div></div>
+        <div class="pipeline-stages">调研 → 设计 → 传播<div class="en">Research → Design → Broadcast</div></div>
+        <div class="pipeline-lead">主导：第二师 · 协同：五师+一师+三师+质监局<div class="en">Lead: Div.2 · Div.5+1+3+QA</div></div>
       </div>
       <div class="pipeline-card reveal" style="--pl-color:#2196F3">
         <div class="pipeline-num">PIPELINE 08</div>
-        <div class="pipeline-name">PPT 制作</div>
-        <div class="pipeline-stages">素材 → 文案 → 设计 → 审核</div>
-        <div class="pipeline-lead">主导：1-04+二师 · 协同：五师+质监局</div>
+        <div class="pipeline-name">PPT 制作<div class="en">Presentation Design</div></div>
+        <div class="pipeline-stages">素材 → 文案 → 设计 → 审核<div class="en">Assets → Copy → Design → Review</div></div>
+        <div class="pipeline-lead">主导：1-04+二师 · 协同：五师+质监局<div class="en">Lead: 1-04+Div.2 · Div.5+QA</div></div>
       </div>
     </div>
   </div>
@@ -546,15 +551,15 @@ footer .ver{color:var(--red);font-weight:600}
       <h2 class="section-title">矛与盾验证 · SPEAR & SHIELD</h2>
     </div>
     <div class="shield-flow reveal">
-      <div class="shield-step spear"><div class="shield-icon">⚔️</div><div class="shield-text"><div class="shield-title">矛 · 实施专家完成任务</div><div class="shield-desc">开发/脚本/Skill/数据处理类产出</div></div></div>
+      <div class="shield-step spear"><div class="shield-icon">⚔️</div><div class="shield-text"><div class="shield-title">矛 · 实施专家完成任务</div><div class="en">Spear · Implementer completes task</div><div class="shield-desc">开发/脚本/Skill/数据处理类产出</div><div class="en">Dev / Script / Skill / Data processing output</div></div></div>
       <div class="shield-arrow"></div>
-      <div class="shield-step judge"><div class="shield-icon">🦞</div><div class="shield-text"><div class="shield-title">阿极判断：是否属于可验证类型？</div><div class="shield-desc">否 → 直接进入汇总汇报</div></div></div>
+      <div class="shield-step judge"><div class="shield-icon">🦞</div><div class="shield-text"><div class="shield-title">阿极判断：是否属于可验证类型？</div><div class="en">A-Ji judges: Is it verifiable?</div><div class="shield-desc">否 → 直接进入汇总汇报</div><div class="en">No → Proceed to summary report</div></div></div>
       <div class="shield-arrow"></div>
-      <div class="shield-step shield-s"><div class="shield-icon">🛡️</div><div class="shield-text"><div class="shield-title">盾 · 独立验证者对抗性测试</div><div class="shield-desc">质监局 / D-07 · 只读权限 · 实施者 ≠ 验证者</div></div></div>
+      <div class="shield-step shield-s"><div class="shield-icon">🛡️</div><div class="shield-text"><div class="shield-title">盾 · 独立验证者对抗性测试</div><div class="en">Shield · Independent adversarial testing</div><div class="shield-desc">质监局 / D-07 · 只读权限 · 实施者 ≠ 验证者</div><div class="en">QA / D-07 · Read-only · Implementer ≠ Verifier</div></div></div>
       <div class="shield-arrow"></div>
       <div class="shield-branch">
-        <div class="shield-step verdict"><div class="shield-icon">✅</div><div class="shield-text"><div class="shield-title">PASS / PARTIAL</div><div class="shield-desc">进入汇总汇报</div></div></div>
-        <div class="shield-step fix"><div class="shield-icon">🔄</div><div class="shield-text"><div class="shield-title">FAIL → 返回修复</div><div class="shield-desc">重新验证（最多 2 轮）</div></div></div>
+        <div class="shield-step verdict"><div class="shield-icon">✅</div><div class="shield-text"><div class="shield-title">PASS / PARTIAL</div><div class="shield-desc">进入汇总汇报</div><div class="en">Proceed to summary report</div></div></div>
+        <div class="shield-step fix"><div class="shield-icon">🔄</div><div class="shield-text"><div class="shield-title">FAIL → 返回修复</div><div class="en">FAIL → Return for fix</div><div class="shield-desc">重新验证（最多 2 轮）</div><div class="en">Re-verify (max 2 rounds)</div></div></div>
       </div>
     </div>
   </div>
@@ -568,11 +573,11 @@ footer .ver{color:var(--red);font-weight:600}
       <h2 class="section-title">爆炸半径权限 · BLAST RADIUS</h2>
     </div>
     <div class="blast-list reveal">
-      <div class="blast-item" style="--bl-color:var(--green)"><span class="blast-level">无害</span><div class="blast-info"><div class="blast-name">读取文件、搜索信息、分析数据</div></div><span class="blast-action">自动放行</span></div>
-      <div class="blast-item" style="--bl-color:var(--cyan)"><span class="blast-level">局部</span><div class="blast-info"><div class="blast-name">写入单个文件、创建目录</div></div><span class="blast-action">子Agent 自主执行</span></div>
-      <div class="blast-item" style="--bl-color:var(--amber)"><span class="blast-level">中等</span><div class="blast-info"><div class="blast-name">修改多个文件、安装依赖</div></div><span class="blast-action">需阿极确认</span></div>
-      <div class="blast-item" style="--bl-color:var(--red)"><span class="blast-level">高危</span><div class="blast-info"><div class="blast-name">删除数据、外发信息、涉及金钱</div></div><span class="blast-action">必须用户确认</span></div>
-      <div class="blast-item" style="--bl-color:#AB47BC"><span class="blast-level">致命</span><div class="blast-info"><div class="blast-name">覆盖原始数据、不可逆操作</div></div><span class="blast-action">安全局否决 + 用户确认</span></div>
+      <div class="blast-item" style="--bl-color:var(--green)"><span class="blast-level">无害<br><span class="en">SAFE</span></span><div class="blast-info"><div class="blast-name">读取文件、搜索信息、分析数据</div><div class="en">Read files, search info, analyze data</div></div><span class="blast-action">自动放行<br><span class="en">Auto-approve</span></span></div>
+      <div class="blast-item" style="--bl-color:var(--cyan)"><span class="blast-level">局部<br><span class="en">LOCAL</span></span><div class="blast-info"><div class="blast-name">写入单个文件、创建目录</div><div class="en">Write single file, create directory</div></div><span class="blast-action">子Agent 自主执行<br><span class="en">Agent self-execute</span></span></div>
+      <div class="blast-item" style="--bl-color:var(--amber)"><span class="blast-level">中等<br><span class="en">MEDIUM</span></span><div class="blast-info"><div class="blast-name">修改多个文件、安装依赖</div><div class="en">Modify multiple files, install deps</div></div><span class="blast-action">需阿极确认<br><span class="en">A-Ji approval</span></span></div>
+      <div class="blast-item" style="--bl-color:var(--red)"><span class="blast-level">高危<br><span class="en">HIGH</span></span><div class="blast-info"><div class="blast-name">删除数据、外发信息、涉及金钱</div><div class="en">Delete data, send external, involve money</div></div><span class="blast-action">必须用户确认<br><span class="en">User approval required</span></span></div>
+      <div class="blast-item" style="--bl-color:#AB47BC"><span class="blast-level">致命<br><span class="en">FATAL</span></span><div class="blast-info"><div class="blast-name">覆盖原始数据、不可逆操作</div><div class="en">Overwrite original data, irreversible ops</div></div><span class="blast-action">安全局否决 + 用户确认<br><span class="en">Security veto + User confirm</span></span></div>
     </div>
   </div>
 </section>
@@ -587,35 +592,35 @@ footer .ver{color:var(--red);font-weight:600}
     <div class="arsenal-count reveal">30+<span>SKILL MODULES</span></div>
     <div class="arsenal-grid">
       <div class="arsenal-group reveal" style="--ag-color:var(--red)">
-        <div class="arsenal-cat">创作</div>
+        <div class="arsenal-cat">创作 WRITING</div>
         <div class="arsenal-items">novel-master<br>novel-creator<br>humanizer<br>write-article<br>docx</div>
       </div>
       <div class="arsenal-group reveal" style="--ag-color:#AB47BC">
-        <div class="arsenal-cat">设计</div>
+        <div class="arsenal-cat">设计 DESIGN</div>
         <div class="arsenal-items">frontend-design<br>svg<br>html-to-image<br>flexicomic<br>comicmaster</div>
       </div>
       <div class="arsenal-group reveal" style="--ag-color:var(--amber)">
-        <div class="arsenal-cat">视频</div>
+        <div class="arsenal-cat">视频 VIDEO</div>
         <div class="arsenal-items">short-drama-generator<br>screenwriter<br>anime-storyboard</div>
       </div>
       <div class="arsenal-group reveal" style="--ag-color:var(--green)">
-        <div class="arsenal-cat">开发</div>
+        <div class="arsenal-cat">开发 DEV</div>
         <div class="arsenal-items">ci-cd<br>cicd-expert<br>ci-cd-pipelines</div>
       </div>
       <div class="arsenal-group reveal" style="--ag-color:var(--cyan)">
-        <div class="arsenal-cat">情报</div>
+        <div class="arsenal-cat">情报 INTEL</div>
         <div class="arsenal-items">data-analyst<br>html-report<br>multi-search<br>playwright-cli</div>
       </div>
       <div class="arsenal-group reveal" style="--ag-color:var(--yellow)">
-        <div class="arsenal-cat">安全</div>
+        <div class="arsenal-cat">安全 SECURITY</div>
         <div class="arsenal-items">security-auditor<br>full-security-scan</div>
       </div>
       <div class="arsenal-group reveal" style="--ag-color:#2196F3">
-        <div class="arsenal-cat">PPT</div>
+        <div class="arsenal-cat">PPT SLIDES</div>
         <div class="arsenal-items">elite-powerpoint-designer<br>slide-studio<br>pptx-generation<br>pptx</div>
       </div>
       <div class="arsenal-group reveal" style="--ag-color:var(--gray)">
-        <div class="arsenal-cat">通用</div>
+        <div class="arsenal-cat">通用 GENERAL</div>
         <div class="arsenal-items">pdf<br>xlsx</div>
       </div>
     </div>
@@ -630,17 +635,17 @@ footer .ver{color:var(--red);font-weight:600}
       <h2 class="section-title">打靶场机制 · SANDBOX TESTING</h2>
     </div>
     <div class="sandbox-flow reveal">
-      <div class="flow-step"><span class="flow-num">01</span><span class="flow-text">新 Skill / MCP 发现</span></div>
+      <div class="flow-step"><span class="flow-num">01</span><div class="flow-text">新 Skill / MCP 发现<div class="en">New Skill / MCP discovered</div></div></div>
       <div class="flow-arrow-down"></div>
-      <div class="flow-step"><span class="flow-num">02</span><span class="flow-text">打靶场管理员：创建隔离沙盒环境</span></div>
+      <div class="flow-step"><span class="flow-num">02</span><div class="flow-text">打靶场管理员：创建隔离沙盒环境<div class="en">Sandbox Admin: Create isolated environment</div></div></div>
       <div class="flow-arrow-down"></div>
-      <div class="flow-step"><span class="flow-num">03</span><span class="flow-text">测试工程师：设计测试用例</span></div>
+      <div class="flow-step"><span class="flow-num">03</span><div class="flow-text">测试工程师：设计测试用例<div class="en">Test Engineer: Design test cases</div></div></div>
       <div class="flow-arrow-down"></div>
-      <div class="flow-step"><span class="flow-num">04</span><span class="flow-text">执行测试（功能 / 安全 / 兼容性 / 性能）</span></div>
+      <div class="flow-step"><span class="flow-num">04</span><div class="flow-text">执行测试（功能 / 安全 / 兼容性 / 性能）<div class="en">Execute tests (Function / Security / Compat / Perf)</div></div></div>
       <div class="flow-arrow-down"></div>
       <div class="flow-branch">
-        <div class="flow-step pass"><span class="flow-num">✓</span><span class="flow-text">通过 → 出具报告 → 质监局审核 → 安装生产</span></div>
-        <div class="flow-step fail"><span class="flow-num">✗</span><span class="flow-text">不通过 → 丢弃 + 记录黑名单 → 通知参谋本部</span></div>
+        <div class="flow-step pass"><span class="flow-num">✓</span><div class="flow-text">通过 → 出具报告 → 质监局审核 → 安装生产<div class="en">Pass → Report → QA review → Install to production</div></div></div>
+        <div class="flow-step fail"><span class="flow-num">✗</span><div class="flow-text">不通过 → 丢弃 + 记录黑名单 → 通知参谋本部<div class="en">Fail → Discard + Blacklist → Notify HQ</div></div></div>
       </div>
     </div>
   </div>
@@ -656,11 +661,11 @@ footer .ver{color:var(--red);font-weight:600}
     <div class="timeline reveal">
       <div class="timeline-line"></div>
       <div class="timeline-items">
-        <div class="timeline-item"><div class="timeline-time">00:00</div><div class="timeline-task">档案备份</div><div class="timeline-who">档案局</div></div>
-        <div class="timeline-item"><div class="timeline-time">02:00</div><div class="timeline-task">记忆压缩</div><div class="timeline-who">阿极自动</div></div>
-        <div class="timeline-item"><div class="timeline-time">03:00</div><div class="timeline-task">主动安全扫描</div><div class="timeline-who">安全局</div></div>
-        <div class="timeline-item"><div class="timeline-time">04:00</div><div class="timeline-task">技能成长</div><div class="timeline-who">技能工匠 + 打靶场</div></div>
-        <div class="timeline-item"><div class="timeline-time">05:30</div><div class="timeline-task">简报准备</div><div class="timeline-who">参谋本部 + 第五师</div></div>
+        <div class="timeline-item"><div class="timeline-time">00:00</div><div class="timeline-task">档案备份</div><div class="en">Archive Backup</div><div class="timeline-who">档案局 Archives</div></div>
+        <div class="timeline-item"><div class="timeline-time">02:00</div><div class="timeline-task">记忆压缩</div><div class="en">Memory Compress</div><div class="timeline-who">阿极自动 A-Ji Auto</div></div>
+        <div class="timeline-item"><div class="timeline-time">03:00</div><div class="timeline-task">主动安全扫描</div><div class="en">Security Scan</div><div class="timeline-who">安全局 Security</div></div>
+        <div class="timeline-item"><div class="timeline-time">04:00</div><div class="timeline-task">技能成长</div><div class="en">Skill Growth</div><div class="timeline-who">技能工匠 + 打靶场</div></div>
+        <div class="timeline-item"><div class="timeline-time">05:30</div><div class="timeline-task">简报准备</div><div class="en">Briefing Prep</div><div class="timeline-who">参谋本部 + 第五师</div></div>
       </div>
     </div>
   </div>
@@ -679,14 +684,14 @@ footer .ver{color:var(--red);font-weight:600}
         <span class="terminal-title">lobster-legion-terminal</span>
       </div>
       <div class="terminal-body">
-        <div class="cmd"><span class="prompt">$ </span><span class="text">查看军团状态</span><span class="desc">// 阿极汇报各师待命情况</span></div>
-        <div class="cmd"><span class="prompt">$ </span><span class="text">紧急召唤 [专家名]！</span><span class="desc">// 跳过参谋本部 (P0)</span></div>
-        <div class="cmd"><span class="prompt">$ </span><span class="text">跳过到详报</span><span class="desc">// 直接进入详报阶段</span></div>
-        <div class="cmd"><span class="prompt">$ </span><span class="text">只要快讯</span><span class="desc">// 只看快讯</span></div>
-        <div class="cmd"><span class="prompt">$ </span><span class="text">保存快照并重启</span><span class="desc">// 生成摘要，新开对话继续</span></div>
-        <div class="cmd"><span class="prompt">$ </span><span class="text">重置工作流</span><span class="desc">// 清空任务缓存</span></div>
-        <div class="cmd"><span class="prompt">$ </span><span class="text">强制执行 [任务名]</span><span class="desc">// 立即触发定时任务 (P2)</span></div>
-        <div class="cmd"><span class="prompt">$ </span><span class="text">回滚到上一版本</span><span class="desc">// 恢复稳定快照</span></div>
+        <div class="cmd"><span class="prompt">$ </span><span class="text">查看军团状态</span><span class="desc">// Report all divisions' status</span></div>
+        <div class="cmd"><span class="prompt">$ </span><span class="text">紧急召唤 [专家名]！</span><span class="desc">// Emergency call, skip HQ (P0)</span></div>
+        <div class="cmd"><span class="prompt">$ </span><span class="text">跳过到详报</span><span class="desc">// Switch to detailed report</span></div>
+        <div class="cmd"><span class="prompt">$ </span><span class="text">只要快讯</span><span class="desc">// Brief summary only</span></div>
+        <div class="cmd"><span class="prompt">$ </span><span class="text">保存快照并重启</span><span class="desc">// Save snapshot & restart</span></div>
+        <div class="cmd"><span class="prompt">$ </span><span class="text">重置工作流</span><span class="desc">// Reset workflow cache</span></div>
+        <div class="cmd"><span class="prompt">$ </span><span class="text">强制执行 [任务名]</span><span class="desc">// Force execute task (P2)</span></div>
+        <div class="cmd"><span class="prompt">$ </span><span class="text">回滚到上一版本</span><span class="desc">// Rollback to last stable</span></div>
       </div>
     </div>
   </div>
@@ -694,32 +699,33 @@ footer .ver{color:var(--red);font-weight:600}
 
 <footer>
   <div class="container">
-    <span class="ver">LOBSTER LEGION v6.12</span> · 正式版 · 2026-04-02<br>
-    编制: 40 单位 · 38 专家 · 2 指挥 · 6 作战师 · 3 监察机构
+    <span class="ver">LOBSTER LEGION v6.12</span> · 正式版 Production · 2026-04-02<br>
+    编制: 40 单位 · 38 专家 · 2 指挥 · 6 作战师 · 3 监察机构<br>
+    <span class="en">40 Units · 38 Experts · 2 Command · 6 Divisions · 3 Oversight Agencies</span>
   </div>
 </footer>
 
 <script>
 // === ORG DATA ===
 const divisions = [
-  {name:'第一师：内容作战师',icon:'✍️',count:4,accent:'#E53935',tag:'作战',
-   members:[{id:'1-01',name:'技术写手',badge:'chief'},{id:'1-02',name:'商业写手'},{id:'1-03',name:'社媒写手'},{id:'1-04',name:'PPT 设计师'}]},
-  {name:'第二师：视觉作战师',icon:'🎨',count:5,accent:'#AB47BC',tag:'扩编',
-   members:[{id:'2-01',name:'UI 设计师',badge:'chief'},{id:'2-02',name:'视觉设计师'},{id:'2-03',name:'AI 图像生成师'},{id:'2-04',name:'封面设计师'},{id:'2-05',name:'图标设计师'}]},
-  {name:'第三师：视频作战师',icon:'🎬',count:3,accent:'#FF8F00',tag:'作战',
-   members:[{id:'3-01',name:'视频剪辑师',badge:'warn'},{id:'3-02',name:'视频编导'},{id:'3-03',name:'视频优化师'}]},
-  {name:'第四师：软件开发师',icon:'💻',count:4,accent:'#00E676',tag:'核心',
-   members:[{id:'4-01',name:'ComfyUI 专家',badge:'chief'},{id:'4-02',name:'桌面应用专家'},{id:'4-03',name:'小程序专家'},{id:'4-04',name:'App 开发专家'}]},
-  {name:'第五师：情报作战师',icon:'🔍',count:5,accent:'#00E5FF',tag:'情报',
-   members:[{id:'5-01',name:'网络调研员',badge:'chief'},{id:'5-02',name:'学术调研员'},{id:'5-03',name:'市场调研员'},{id:'5-04',name:'数据爬虫师'},{id:'5-05',name:'情报分析师'}]},
-  {name:'第六师：支援作战师',icon:'🔧',count:3,accent:'#FFD600',tag:'支援',
-   members:[{id:'6-01',name:'自动化师',badge:'chief'},{id:'6-02',name:'通讯专员'},{id:'6-03',name:'技能工匠'}]},
-  {name:'安全局',icon:'🔒',count:7,accent:'#E53935',tag:'监察',
-   members:[{id:'D-01',name:'代码安全官',badge:'chief'},{id:'D-02',name:'系统安全官'},{id:'D-03',name:'密码学家'},{id:'D-04',name:'逆向工程师'},{id:'D-05',name:'安全审计官'},{id:'D-06',name:'打靶场管理员',badge:'new'},{id:'D-07',name:'测试工程师',badge:'new'}]},
-  {name:'质监局',icon:'📋',count:3,accent:'#2196F3',tag:'监察',
-   members:[{id:'S-01',name:'首席审查官',badge:'chief'},{id:'S-02',name:'合规审查官'},{id:'S-03',name:'质量审核官'}]},
-  {name:'档案局',icon:'🗄️',count:4,accent:'#78909C',tag:'监察',
-   members:[{id:'A-01',name:'档案管理员',badge:'chief'},{id:'A-02',name:'数据恢复师'},{id:'A-03',name:'版本控制官'},{id:'A-04',name:'安全存储官'}]}
+  {name:'第一师：内容作战师',en:'Div.1: Content Operations',icon:'✍️',count:4,accent:'#E53935',tag:'作战',
+   members:[{id:'1-01',name:'技术写手',en:'Tech Writer',badge:'chief'},{id:'1-02',name:'商业写手',en:'Business Writer'},{id:'1-03',name:'社媒写手',en:'Social Media Writer'},{id:'1-04',name:'PPT 设计师',en:'PPT Designer'}]},
+  {name:'第二师：视觉作战师',en:'Div.2: Visual Operations',icon:'🎨',count:5,accent:'#AB47BC',tag:'扩编',
+   members:[{id:'2-01',name:'UI 设计师',en:'UI Designer',badge:'chief'},{id:'2-02',name:'视觉设计师',en:'Visual Designer'},{id:'2-03',name:'AI 图像生成师',en:'AI Image Generator'},{id:'2-04',name:'封面设计师',en:'Cover Designer'},{id:'2-05',name:'图标设计师',en:'Icon Designer'}]},
+  {name:'第三师：视频作战师',en:'Div.3: Video Operations',icon:'🎬',count:3,accent:'#FF8F00',tag:'作战',
+   members:[{id:'3-01',name:'视频剪辑师',en:'Video Editor',badge:'warn'},{id:'3-02',name:'视频编导',en:'Video Director'},{id:'3-03',name:'视频优化师',en:'Video Optimizer'}]},
+  {name:'第四师：软件开发师',en:'Div.4: Software Development',icon:'💻',count:4,accent:'#00E676',tag:'核心',
+   members:[{id:'4-01',name:'ComfyUI 专家',en:'ComfyUI Expert',badge:'chief'},{id:'4-02',name:'桌面应用专家',en:'Desktop App Expert'},{id:'4-03',name:'小程序专家',en:'Mini-App Expert'},{id:'4-04',name:'App 开发专家',en:'App Dev Expert'}]},
+  {name:'第五师：情报作战师',en:'Div.5: Intelligence Operations',icon:'🔍',count:5,accent:'#00E5FF',tag:'情报',
+   members:[{id:'5-01',name:'网络调研员',en:'Web Researcher',badge:'chief'},{id:'5-02',name:'学术调研员',en:'Academic Researcher'},{id:'5-03',name:'市场调研员',en:'Market Researcher'},{id:'5-04',name:'数据爬虫师',en:'Data Crawler'},{id:'5-05',name:'情报分析师',en:'Intel Analyst'}]},
+  {name:'第六师：支援作战师',en:'Div.6: Support Operations',icon:'🔧',count:3,accent:'#FFD600',tag:'支援',
+   members:[{id:'6-01',name:'自动化师',en:'Automation Engineer',badge:'chief'},{id:'6-02',name:'通讯专员',en:'Comms Specialist'},{id:'6-03',name:'技能工匠',en:'Skill Craftsman'}]},
+  {name:'安全局',en:'Security Bureau',icon:'🔒',count:7,accent:'#E53935',tag:'监察',
+   members:[{id:'D-01',name:'代码安全官',en:'Code Security Officer',badge:'chief'},{id:'D-02',name:'系统安全官',en:'System Security Officer'},{id:'D-03',name:'密码学家',en:'Cryptographer'},{id:'D-04',name:'逆向工程师',en:'Reverse Engineer'},{id:'D-05',name:'安全审计官',en:'Security Auditor'},{id:'D-06',name:'打靶场管理员',en:'Sandbox Admin',badge:'new'},{id:'D-07',name:'测试工程师',en:'Test Engineer',badge:'new'}]},
+  {name:'质监局',en:'QA Bureau',icon:'📋',count:3,accent:'#2196F3',tag:'监察',
+   members:[{id:'S-01',name:'首席审查官',en:'Chief Inspector',badge:'chief'},{id:'S-02',name:'合规审查官',en:'Compliance Officer'},{id:'S-03',name:'质量审核官',en:'Quality Auditor'}]},
+  {name:'档案局',en:'Archives Bureau',icon:'🗄️',count:4,accent:'#78909C',tag:'监察',
+   members:[{id:'A-01',name:'档案管理员',en:'Archivist',badge:'chief'},{id:'A-02',name:'数据恢复师',en:'Data Recovery'},{id:'A-03',name:'版本控制官',en:'Version Control'},{id:'A-04',name:'安全存储官',en:'Secure Storage'}]}
 ];
 
 const grid = document.getElementById('orgGrid');
@@ -729,19 +735,20 @@ divisions.forEach((d,i) => {
   card.style.cssText = `--card-accent:${d.accent};animation-delay:${i*60}ms`;
   const badgeLabels = {chief:'首席',new:'NEW',warn:'⚠️'};
   const membersHTML = d.members.map(m =>
-    `<div class="member"><span class="member-id">${m.id}</span><span class="member-name">${m.name}</span>${m.badge?`<span class="member-badge ${m.badge}">${badgeLabels[m.badge]}</span>`:''}</div>`
+    `<div class="member"><span class="member-id">${m.id}</span><span class="member-name">${m.name}<div class="en">${m.en||''}</div></span>${m.badge?`<span class="member-badge ${m.badge}">${badgeLabels[m.badge]}</span>`:''}</div>`
   ).join('');
   card.innerHTML = `
     <div class="org-card-header">
       <div class="org-card-icon">${d.icon}</div>
       <div class="org-card-info">
         <div class="org-card-name">${d.name} <span class="tag">${d.tag}</span></div>
-        <div class="org-card-sub">${d.count} 名专家</div>
+        <div class="org-card-sub">${d.en||''}</div>
+        <div class="org-card-sub">${d.count} 名专家 Experts</div>
       </div>
       <div class="org-card-count">${d.count}</div>
     </div>
     <div class="org-card-members"><div class="org-card-members-inner">${membersHTML}</div></div>
-    <div class="org-card-expand"><span class="arrow">▼</span> 展开编制</div>`;
+    <div class="org-card-expand"><span class="arrow">▼</span> 展开编制 Expand</div>`;
   card.addEventListener('click', () => card.classList.toggle('expanded'));
   grid.appendChild(card);
 });
