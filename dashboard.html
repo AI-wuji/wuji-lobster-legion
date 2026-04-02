@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>龙虾军团 v6.11 · 作战指挥中心</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;600;700&family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* === RESET & ROOT === */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06080e;--bg2:#0c1018;--bg3:#111826;
+  --red:#E53935;--red-glow:#E5393580;--red-dim:#E5393530;
+  --amber:#FF8F00;--yellow:#FFD600;--cyan:#00E5FF;--green:#00E676;--gray:#607D8B;
+  --text:#e8eaf0;--text2:#90a4ae;--text3:#546e7a;
+  --mono:'JetBrains Mono',monospace;--display:'Orbitron',sans-serif;--body:'Noto Sans SC',sans-serif;
+  --grid-color:#E539350a;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--body);overflow-x:hidden;line-height:1.6}
+
+/* === GRID BACKGROUND === */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--grid-color) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-color) 1px,transparent 1px);
+  background-size:60px 60px;
+  animation:gridDrift 30s linear infinite;
+}
+@keyframes gridDrift{to{background-position:60px 60px}}
+
+/* === SCANLINE OVERLAY === */
+body::after{
+  content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);
+}
+
+/* === SCROLL REVEAL === */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* === CONTAINER === */
+.container{max-width:1280px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+/* === SECTION === */
+section{padding:100px 0}
+.section-label{
+  font-family:var(--mono);font-size:11px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--red);margin-bottom:8px;display:flex;align-items:center;gap:10px;
+}
+.section-label::before{content:'';width:24px;height:1px;background:var(--red)}
+.section-title{
+  font-family:var(--display);font-size:clamp(22px,3vw,32px);font-weight:700;
+  color:var(--text);margin-bottom:48px;letter-spacing:1px;
+}
+
+/* ===================== HERO ===================== */
+#hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;position:relative;overflow:hidden;
+}
+.hero-radial{
+  position:absolute;width:800px;height:800px;border-radius:50%;
+  background:radial-gradient(circle,var(--red-glow) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);filter:blur(100px);
+  animation:heroPulse 6s ease-in-out infinite alternate;
+}
+@keyframes heroPulse{0%{opacity:.25;scale:.9}100%{opacity:.45;scale:1.1}}
+
+.hero-content{position:relative;z-index:2}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--red-dim);border:1px solid var(--red);border-radius:100px;
+  padding:6px 20px;font-family:var(--mono);font-size:12px;color:var(--red);
+  margin-bottom:32px;letter-spacing:2px;
+  animation:fadeSlideUp .8s ease both;
+}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.hero-icon{
+  font-size:80px;display:block;margin-bottom:16px;
+  animation:fadeSlideUp .8s ease .15s both;
+  filter:drop-shadow(0 0 40px var(--red-glow));
+}
+.hero-title{
+  font-family:var(--display);font-size:clamp(40px,7vw,72px);font-weight:900;
+  letter-spacing:4px;line-height:1.1;
+  background:linear-gradient(135deg,#fff 30%,var(--red));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  animation:fadeSlideUp .8s ease .3s both;
+}
+.hero-sub{
+  font-family:var(--mono);font-size:clamp(13px,1.5vw,16px);color:var(--text2);
+  margin-top:16px;letter-spacing:3px;
+  animation:fadeSlideUp .8s ease .45s both;
+}
+.hero-stats{
+  display:flex;justify-content:center;gap:48px;margin-top:56px;flex-wrap:wrap;
+  animation:fadeSlideUp .8s ease .6s both;
+}
+.hero-stat{text-align:center}
+.hero-stat .num{
+  font-family:var(--display);font-size:clamp(32px,4vw,48px);font-weight:900;color:var(--red);
+  display:block;line-height:1;
+}
+.hero-stat .lbl{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:2px;margin-top:6px}
+
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+.hero-scroll{
+  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:3px;
+  animation:scrollBounce 2s ease infinite;
+}
+@keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* Corner brackets for hero */
+.hero-corner{position:absolute;width:40px;height:40px;border-color:var(--red);border-style:solid;border-width:0;opacity:.4}
+.hero-corner.tl{top:40px;left:40px;border-top-width:2px;border-left-width:2px}
+.hero-corner.tr{top:40px;right:40px;border-top-width:2px;border-right-width:2px}
+.hero-corner.bl{bottom:40px;left:40px;border-bottom-width:2px;border-left-width:2px}
+.hero-corner.br{bottom:40px;right:40px;border-bottom-width:2px;border-right-width:2px}
+
+/* ===================== COMMAND CHAIN ===================== */
+.chain-wrapper{display:flex;flex-direction:column;align-items:center;gap:0}
+.chain-node{
+  background:var(--bg2);border:1px solid #1e293b;border-radius:10px;
+  padding:18px 36px;text-align:center;position:relative;
+  transition:all .3s ease;min-width:240px;
+}
+.chain-node:hover{border-color:var(--red);box-shadow:0 0 30px var(--red-dim)}
+.chain-node.command{border-color:var(--red);background:linear-gradient(135deg,#1a0a0a,var(--bg2))}
+.chain-node.user-node{border-color:var(--cyan);background:linear-gradient(135deg,#0a1a1a,var(--bg2))}
+.chain-node .node-title{font-family:var(--display);font-size:14px;font-weight:700;letter-spacing:1px}
+.chain-node .node-desc{font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:4px}
+.chain-arrow{
+  width:2px;height:36px;background:linear-gradient(to bottom,var(--red),transparent);
+  position:relative;
+}
+.chain-arrow::after{
+  content:'▼';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);
+  color:var(--red);font-size:10px;
+}
+.chain-branch{
+  display:flex;gap:20px;flex-wrap:wrap;justify-content:center;position:relative;
+  padding-top:20px;
+}
+.chain-branch::before{
+  content:'';position:absolute;top:0;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--red),transparent);
+}
+.chain-branch .chain-node{min-width:160px;padding:14px 20px}
+.chain-branch .chain-node .node-title{font-size:12px}
+
+/* ===================== ORG CARDS ===================== */
+.org-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.org-card{
+  background:var(--bg2);border:1px solid #1a2332;border-radius:12px;
+  overflow:hidden;transition:all .4s ease;cursor:pointer;position:relative;
+}
+.org-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--card-accent,var(--red));opacity:.6;transition:opacity .3s;
+}
+.org-card:hover{border-color:var(--card-accent,var(--red));transform:translateY(-3px);
+  box-shadow:0 12px 40px -10px color-mix(in srgb,var(--card-accent,var(--red)) 30%,transparent);
+}
+.org-card:hover::before{opacity:1}
+.org-card-header{padding:20px 24px;display:flex;align-items:center;gap:14px}
+.org-card-icon{
+  width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  background:color-mix(in srgb,var(--card-accent,var(--red)) 15%,transparent);
+  font-size:20px;flex-shrink:0;
+}
+.org-card-info{flex:1;min-width:0}
+.org-card-name{font-weight:700;font-size:15px;display:flex;align-items:center;gap:8px}
+.org-card-name .tag{
+  font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:4px;
+  background:var(--card-accent,var(--red));color:#fff;font-weight:600;
+}
+.org-card-sub{font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:2px}
+.org-card-count{
+  font-family:var(--display);font-size:24px;font-weight:900;
+  color:var(--card-accent,var(--red));flex-shrink:0;
+}
+.org-card-members{
+  max-height:0;overflow:hidden;transition:max-height .5s ease;
+  border-top:1px solid transparent;
+}
+.org-card.expanded .org-card-members{max-height:400px;border-top-color:#1a2332}
+.org-card-members-inner{padding:16px 24px}
+.member{
+  display:flex;align-items:center;gap:10px;padding:7px 0;
+  border-bottom:1px solid #111826;font-size:13px;
+}
+.member:last-child{border-bottom:none}
+.member-id{font-family:var(--mono);font-size:11px;color:var(--text3);width:36px;flex-shrink:0}
+.member-name{flex:1}
+.member-badge{font-size:11px;padding:1px 8px;border-radius:3px;font-family:var(--mono)}
+.member-badge.chief{background:#E5393520;color:var(--red)}
+.member-badge.new{background:#00E67620;color:var(--green)}
+.member-badge.warn{background:#FF8F0020;color:var(--amber)}
+.org-card-expand{
+  text-align:center;padding:10px;font-family:var(--mono);font-size:11px;color:var(--text3);
+  transition:color .3s;
+}
+.org-card:hover .org-card-expand{color:var(--card-accent,var(--red))}
+.org-card.expanded .org-card-expand .arrow{transform:rotate(180deg);display:inline-block}
+
+/* ===================== STATS BAR ===================== */
+.stats-bar{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;
+  margin-bottom:60px;
+}
+.stat-item{
+  background:var(--bg2);border:1px solid #1a2332;border-radius:10px;
+  padding:24px;text-align:center;transition:all .3s;position:relative;overflow:hidden;
+}
+.stat-item::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--stat-color,var(--red));opacity:.5;
+}
+.stat-item:hover{border-color:var(--stat-color,var(--red));transform:translateY(-2px)}
+.stat-num{
+  font-family:var(--display);font-size:36px;font-weight:900;
+  color:var(--stat-color,var(--red));line-height:1;
+}
+.stat-label{font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:6px;letter-spacing:1px}
+
+/* ===================== PRIORITY ===================== */
+.priority-list{display:flex;flex-direction:column;gap:12px;max-width:700px}
+.priority-item{
+  display:flex;align-items:center;gap:16px;padding:16px 20px;
+  background:var(--bg2);border:1px solid #1a2332;border-radius:10px;
+  border-left:4px solid var(--p-color);transition:all .3s;
+}
+.priority-item:hover{transform:translateX(6px);border-color:var(--p-color)}
+.priority-tag{
+  font-family:var(--display);font-size:14px;font-weight:900;color:var(--p-color);
+  width:36px;flex-shrink:0;
+}
+.priority-name{font-weight:600;font-size:14px;flex:1}
+.priority-desc{font-family:var(--mono);font-size:11px;color:var(--text3)}
+
+/* ===================== SANDBOX FLOW ===================== */
+.sandbox-flow{display:flex;flex-direction:column;align-items:center;gap:0}
+.flow-step{
+  display:flex;align-items:center;gap:16px;padding:16px 28px;
+  background:var(--bg2);border:1px solid #1a2332;border-radius:10px;
+  min-width:300px;transition:all .3s;
+}
+.flow-step:hover{border-color:var(--cyan);box-shadow:0 0 20px #00E5FF15}
+.flow-num{
+  font-family:var(--display);font-size:18px;font-weight:900;color:var(--cyan);
+  width:32px;text-align:center;flex-shrink:0;
+}
+.flow-text{font-size:14px;font-weight:500}
+.flow-arrow-down{
+  width:2px;height:28px;background:linear-gradient(to bottom,var(--cyan),transparent);position:relative;
+}
+.flow-arrow-down::after{content:'▼';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);color:var(--cyan);font-size:10px}
+.flow-branch{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.flow-branch .flow-step.pass{border-color:#00E67640}
+.flow-branch .flow-step.pass:hover{border-color:var(--green);box-shadow:0 0 20px #00E67615}
+.flow-branch .flow-step.pass .flow-num{color:var(--green)}
+.flow-branch .flow-step.fail{border-color:#E5393540}
+.flow-branch .flow-step.fail:hover{border-color:var(--red);box-shadow:0 0 20px var(--red-dim)}
+.flow-branch .flow-step.fail .flow-num{color:var(--red)}
+
+/* ===================== TIMELINE ===================== */
+.timeline{position:relative;padding:40px 0}
+.timeline-line{
+  position:absolute;top:50%;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,#1e293b 10%,#1e293b 90%,transparent);
+}
+.timeline-items{display:flex;justify-content:space-between;position:relative;flex-wrap:wrap;gap:20px}
+.timeline-item{
+  text-align:center;flex:1;min-width:140px;position:relative;padding-top:30px;
+}
+.timeline-item::before{
+  content:'';position:absolute;top:12px;left:50%;transform:translateX(-50%);
+  width:14px;height:14px;border-radius:50%;border:2px solid var(--red);
+  background:var(--bg);z-index:1;transition:all .3s;
+}
+.timeline-item:hover::before{background:var(--red);box-shadow:0 0 16px var(--red-glow)}
+.timeline-time{font-family:var(--display);font-size:16px;font-weight:700;color:var(--red)}
+.timeline-task{font-size:13px;color:var(--text2);margin-top:4px}
+.timeline-who{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:2px}
+
+/* ===================== TERMINAL ===================== */
+.terminal{
+  background:#0a0c12;border:1px solid #1a2332;border-radius:12px;overflow:hidden;
+  max-width:720px;font-family:var(--mono);
+}
+.terminal-bar{
+  display:flex;align-items:center;gap:8px;padding:12px 16px;
+  background:#0e1018;border-bottom:1px solid #1a2332;
+}
+.terminal-dot{width:10px;height:10px;border-radius:50%}
+.terminal-dot.r{background:#E53935}.terminal-dot.y{background:#FFD600}.terminal-dot.g{background:#00E676}
+.terminal-title{flex:1;text-align:center;font-size:11px;color:var(--text3);letter-spacing:2px}
+.terminal-body{padding:20px;font-size:13px;line-height:2}
+.cmd{color:var(--text2)}
+.cmd .prompt{color:var(--red)}
+.cmd .text{color:var(--green)}
+.cmd .desc{color:var(--text3);margin-left:12px}
+
+/* ===================== FOOTER ===================== */
+footer{
+  text-align:center;padding:60px 0;border-top:1px solid #111826;
+  font-family:var(--mono);font-size:12px;color:var(--text3);
+}
+footer .ver{color:var(--red);font-weight:600}
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:768px){
+  .org-grid{grid-template-columns:1fr}
+  .hero-stats{gap:24px}
+  .chain-branch{flex-direction:column;align-items:center}
+  .flow-branch{flex-direction:column;align-items:center}
+  section{padding:60px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- ====== HERO ====== -->
+<section id="hero">
+  <div class="hero-radial"></div>
+  <div class="hero-corner tl"></div><div class="hero-corner tr"></div>
+  <div class="hero-corner bl"></div><div class="hero-corner br"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span>SYSTEM STATUS: OPERATIONAL</div>
+    <span class="hero-icon">🦞</span>
+    <h1 class="hero-title">龙虾军团</h1>
+    <p class="hero-sub">v6.11 · 打靶场版 · 准生产 / 可试运行</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num counter" data-target="40">0</span><span class="lbl">总单位</span></div>
+      <div class="hero-stat"><span class="num counter" data-target="38">0</span><span class="lbl">业务专家</span></div>
+      <div class="hero-stat"><span class="num counter" data-target="6">0</span><span class="lbl">作战师</span></div>
+      <div class="hero-stat"><span class="num counter" data-target="3">0</span><span class="lbl">监察机构</span></div>
+    </div>
+  </div>
+  <div class="hero-scroll">▽ SCROLL TO EXPLORE</div>
+</section>
+
+<!-- ====== COMMAND CHAIN ====== -->
+<section id="chain">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">SECTION 01</div>
+      <h2 class="section-title">指挥链 · COMMAND CHAIN</h2>
+    </div>
+    <div class="chain-wrapper reveal">
+      <div class="chain-node user-node"><div class="node-title">👤 用户 (EE37)</div><div class="node-desc">最高指挥权</div></div>
+      <div class="chain-arrow"></div>
+      <div class="chain-node command"><div class="node-title">🦞 阿极</div><div class="node-desc">总指挥 / 秘书 · 唯一对接窗口</div></div>
+      <div class="chain-arrow"></div>
+      <div class="chain-node"><div class="node-title">🎖️ 参谋本部 (P-01)</div><div class="node-desc">需求分析 · 任务拆解 · 冲突仲裁 · 智能调度</div></div>
+      <div class="chain-arrow"></div>
+      <div class="chain-branch">
+        <div class="chain-node"><div class="node-title">⚔️ 六大作战师</div><div class="node-desc">24 名专家</div></div>
+        <div class="chain-node"><div class="node-title">🔒 安全局</div><div class="node-desc">7 名专家</div></div>
+        <div class="chain-node"><div class="node-title">📋 质监局</div><div class="node-desc">3 名专家</div></div>
+        <div class="chain-node"><div class="node-title">🗄️ 档案局</div><div class="node-desc">4 名专家</div></div>
+      </div>
+      <div class="chain-arrow"></div>
+      <div class="chain-node command"><div class="node-title">🦞 阿极汇总</div><div class="node-desc">结果汇报 → 用户</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== STATS ====== -->
+<section id="stats" style="padding-top:40px;padding-bottom:40px">
+  <div class="container">
+    <div class="stats-bar reveal">
+      <div class="stat-item" style="--stat-color:var(--red)"><div class="stat-num counter" data-target="38">0</div><div class="stat-label">业务专家</div></div>
+      <div class="stat-item" style="--stat-color:var(--cyan)"><div class="stat-num counter" data-target="2">0</div><div class="stat-label">指挥单位</div></div>
+      <div class="stat-item" style="--stat-color:var(--amber)"><div class="stat-num counter" data-target="40">0</div><div class="stat-label">总单位</div></div>
+      <div class="stat-item" style="--stat-color:var(--green)"><div class="stat-num counter" data-target="6">0</div><div class="stat-label">作战师</div></div>
+      <div class="stat-item" style="--stat-color:#AB47BC"><div class="stat-num counter" data-target="3">0</div><div class="stat-label">监察机构</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== ORGANIZATION ====== -->
+<section id="org">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">SECTION 02</div>
+      <h2 class="section-title">编制总览 · ORGANIZATION</h2>
+    </div>
+    <div class="org-grid" id="orgGrid"></div>
+  </div>
+</section>
+
+<!-- ====== PRIORITY ====== -->
+<section id="priority">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">SECTION 03</div>
+      <h2 class="section-title">任务优先级 · PRIORITY</h2>
+    </div>
+    <div class="priority-list reveal">
+      <div class="priority-item" style="--p-color:var(--red)"><span class="priority-tag">P0</span><span class="priority-name">安全事件 / 紧急召唤 / 数据风险</span><span class="priority-desc">CRITICAL</span></div>
+      <div class="priority-item" style="--p-color:var(--amber)"><span class="priority-tag">P1</span><span class="priority-name">用户实时指令</span><span class="priority-desc">HIGH</span></div>
+      <div class="priority-item" style="--p-color:var(--yellow)"><span class="priority-tag">P2</span><span class="priority-name">强制执行任务</span><span class="priority-desc">MEDIUM</span></div>
+      <div class="priority-item" style="--p-color:var(--cyan)"><span class="priority-tag">P3</span><span class="priority-name">定时任务</span><span class="priority-desc">NORMAL</span></div>
+      <div class="priority-item" style="--p-color:var(--gray)"><span class="priority-tag">P4</span><span class="priority-name">例行整理</span><span class="priority-desc">LOW</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SANDBOX ====== -->
+<section id="sandbox">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">SECTION 04</div>
+      <h2 class="section-title">打靶场机制 · SANDBOX TESTING</h2>
+    </div>
+    <div class="sandbox-flow reveal">
+      <div class="flow-step"><span class="flow-num">01</span><span class="flow-text">新 Skill / MCP 发现</span></div>
+      <div class="flow-arrow-down"></div>
+      <div class="flow-step"><span class="flow-num">02</span><span class="flow-text">打靶场管理员：创建隔离沙盒环境</span></div>
+      <div class="flow-arrow-down"></div>
+      <div class="flow-step"><span class="flow-num">03</span><span class="flow-text">测试工程师：设计测试用例</span></div>
+      <div class="flow-arrow-down"></div>
+      <div class="flow-step"><span class="flow-num">04</span><span class="flow-text">执行测试（功能 / 安全 / 兼容性 / 性能）</span></div>
+      <div class="flow-arrow-down"></div>
+      <div class="flow-branch">
+        <div class="flow-step pass"><span class="flow-num">✓</span><span class="flow-text">通过 → 出具报告 → 质监局审核 → 安装生产</span></div>
+        <div class="flow-step fail"><span class="flow-num">✗</span><span class="flow-text">不通过 → 丢弃 + 记录黑名单 → 通知参谋本部</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== TIMELINE ====== -->
+<section id="timeline-sec">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">SECTION 05</div>
+      <h2 class="section-title">定时任务 · DAILY SCHEDULE</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-line"></div>
+      <div class="timeline-items">
+        <div class="timeline-item"><div class="timeline-time">00:00</div><div class="timeline-task">档案备份</div><div class="timeline-who">档案局</div></div>
+        <div class="timeline-item"><div class="timeline-time">02:00</div><div class="timeline-task">记忆压缩</div><div class="timeline-who">阿极自动</div></div>
+        <div class="timeline-item"><div class="timeline-time">03:00</div><div class="timeline-task">主动安全扫描</div><div class="timeline-who">安全局</div></div>
+        <div class="timeline-item"><div class="timeline-time">04:00</div><div class="timeline-task">技能成长</div><div class="timeline-who">技能工匠 + 打靶场</div></div>
+        <div class="timeline-item"><div class="timeline-time">05:30</div><div class="timeline-task">简报准备</div><div class="timeline-who">参谋本部 + 第五师</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== COMMANDS ====== -->
+<section id="commands">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">SECTION 06</div>
+      <h2 class="section-title">快捷命令 · QUICK COMMANDS</h2>
+    </div>
+    <div class="terminal reveal">
+      <div class="terminal-bar">
+        <span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span>
+        <span class="terminal-title">lobster-legion-terminal</span>
+      </div>
+      <div class="terminal-body">
+        <div class="cmd"><span class="prompt">$ </span><span class="text">查看军团状态</span><span class="desc">// 阿极汇报各师待命情况</span></div>
+        <div class="cmd"><span class="prompt">$ </span><span class="text">紧急召唤 [专家名]！</span><span class="desc">// 跳过参谋本部 (P0)</span></div>
+        <div class="cmd"><span class="prompt">$ </span><span class="text">跳过到详报</span><span class="desc">// 直接进入详报阶段</span></div>
+        <div class="cmd"><span class="prompt">$ </span><span class="text">只要快讯</span><span class="desc">// 只看快讯</span></div>
+        <div class="cmd"><span class="prompt">$ </span><span class="text">保存快照并重启</span><span class="desc">// 生成摘要，新开对话继续</span></div>
+        <div class="cmd"><span class="prompt">$ </span><span class="text">重置工作流</span><span class="desc">// 清空任务缓存</span></div>
+        <div class="cmd"><span class="prompt">$ </span><span class="text">强制执行 [任务名]</span><span class="desc">// 立即触发定时任务 (P2)</span></div>
+        <div class="cmd"><span class="prompt">$ </span><span class="text">回滚到上一版本</span><span class="desc">// 恢复稳定快照</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <span class="ver">LOBSTER LEGION v6.11</span> · 打靶场版 · 2026-03-17<br>
+    编制: 40 单位 · 38 专家 · 2 指挥 · 6 作战师 · 3 监察机构
+  </div>
+</footer>
+
+<script>
+// === ORG DATA ===
+const divisions = [
+  {name:'第一师：内容作战师',icon:'✍️',count:4,accent:'#E53935',tag:'作战',
+   members:[{id:'1-01',name:'技术写手',badge:'chief'},{id:'1-02',name:'商业写手'},{id:'1-03',name:'社媒写手'},{id:'1-04',name:'PPT 设计师'}]},
+  {name:'第二师：视觉作战师',icon:'🎨',count:5,accent:'#AB47BC',tag:'扩编',
+   members:[{id:'2-01',name:'UI 设计师',badge:'chief'},{id:'2-02',name:'视觉设计师'},{id:'2-03',name:'AI 图像生成师'},{id:'2-04',name:'封面设计师'},{id:'2-05',name:'图标设计师'}]},
+  {name:'第三师：视频作战师',icon:'🎬',count:3,accent:'#FF8F00',tag:'作战',
+   members:[{id:'3-01',name:'视频剪辑师',badge:'warn'},{id:'3-02',name:'视频编导'},{id:'3-03',name:'视频优化师'}]},
+  {name:'第四师：软件开发师',icon:'💻',count:4,accent:'#00E676',tag:'核心',
+   members:[{id:'4-01',name:'ComfyUI 专家',badge:'chief'},{id:'4-02',name:'桌面应用专家'},{id:'4-03',name:'小程序专家'},{id:'4-04',name:'App 开发专家'}]},
+  {name:'第五师：情报作战师',icon:'🔍',count:5,accent:'#00E5FF',tag:'情报',
+   members:[{id:'5-01',name:'网络调研员',badge:'chief'},{id:'5-02',name:'学术调研员'},{id:'5-03',name:'市场调研员'},{id:'5-04',name:'数据爬虫师'},{id:'5-05',name:'情报分析师'}]},
+  {name:'第六师：支援作战师',icon:'🔧',count:3,accent:'#FFD600',tag:'支援',
+   members:[{id:'6-01',name:'自动化师',badge:'chief'},{id:'6-02',name:'通讯专员'},{id:'6-03',name:'技能工匠'}]},
+  {name:'安全局',icon:'🔒',count:7,accent:'#E53935',tag:'监察',
+   members:[{id:'D-01',name:'代码安全官',badge:'chief'},{id:'D-02',name:'系统安全官'},{id:'D-03',name:'密码学家'},{id:'D-04',name:'逆向工程师'},{id:'D-05',name:'安全审计官'},{id:'D-06',name:'打靶场管理员',badge:'new'},{id:'D-07',name:'测试工程师',badge:'new'}]},
+  {name:'质监局',icon:'📋',count:3,accent:'#2196F3',tag:'监察',
+   members:[{id:'S-01',name:'首席审查官',badge:'chief'},{id:'S-02',name:'合规审查官'},{id:'S-03',name:'质量审核官'}]},
+  {name:'档案局',icon:'🗄️',count:4,accent:'#78909C',tag:'监察',
+   members:[{id:'A-01',name:'档案管理员',badge:'chief'},{id:'A-02',name:'数据恢复师'},{id:'A-03',name:'版本控制官'},{id:'A-04',name:'安全存储官'}]}
+];
+
+const grid = document.getElementById('orgGrid');
+divisions.forEach((d,i) => {
+  const card = document.createElement('div');
+  card.className = 'org-card reveal';
+  card.style.cssText = `--card-accent:${d.accent};animation-delay:${i*60}ms`;
+  const badgeLabels = {chief:'首席',new:'NEW',warn:'⚠️'};
+  const membersHTML = d.members.map(m =>
+    `<div class="member"><span class="member-id">${m.id}</span><span class="member-name">${m.name}</span>${m.badge?`<span class="member-badge ${m.badge}">${badgeLabels[m.badge]}</span>`:''}</div>`
+  ).join('');
+  card.innerHTML = `
+    <div class="org-card-header">
+      <div class="org-card-icon">${d.icon}</div>
+      <div class="org-card-info">
+        <div class="org-card-name">${d.name} <span class="tag">${d.tag}</span></div>
+        <div class="org-card-sub">${d.count} 名专家</div>
+      </div>
+      <div class="org-card-count">${d.count}</div>
+    </div>
+    <div class="org-card-members"><div class="org-card-members-inner">${membersHTML}</div></div>
+    <div class="org-card-expand"><span class="arrow">▼</span> 展开编制</div>`;
+  card.addEventListener('click', () => card.classList.toggle('expanded'));
+  grid.appendChild(card);
+});
+
+// === SCROLL REVEAL ===
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
+}, {threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// === COUNTER ANIMATION ===
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting && !e.target.dataset.done) {
+      e.target.dataset.done = '1';
+      const target = +e.target.dataset.target;
+      let current = 0;
+      const step = Math.max(1, Math.ceil(target / 40));
+      const timer = setInterval(() => {
+        current += step;
+        if(current >= target) { current = target; clearInterval(timer); }
+        e.target.textContent = current;
+      }, 30);
+    }
+  });
+}, {threshold:0.5});
+document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+</script>
+</body>
+</html>
