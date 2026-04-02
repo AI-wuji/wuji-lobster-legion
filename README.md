@@ -1,6 +1,8 @@
-# 🦞 龙虾军团 v6.12
+# 🦞 无极龙虾军团 v6.12
 
 **AI 多智能体协作系统** — 以军事指挥链为架构，40 个专业单位通过流水线驱动、跨部门协同，覆盖从情报调研、软件开发、内容创作、视觉设计、视频制作到安全攻防的全链路任务。
+
+> 📺 [**在线查看军团可视化大屏**](https://ai-wuji.github.io/wuji-lobster-legion/)
 
 ## 核心架构
 
@@ -87,7 +89,7 @@ dashboard.html        # 军团可视化大屏
 
 ## 安装使用
 
-将 `.claude/skills/lobster-legion/skill.md` 放入你的 Claude Code 项目的对应目录即可激活龙虾军团。
+将 `.claude/skills/lobster-legion/skill.md` 放入你的 Claude Code 项目的对应目录即可激活无极龙虾军团。
 
 ## 快捷命令
 
