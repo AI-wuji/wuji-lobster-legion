@@ -244,6 +244,71 @@ section{padding:100px 0}
 .priority-name{font-weight:600;font-size:14px;flex:1}
 .priority-desc{font-family:var(--mono);font-size:11px;color:var(--text3)}
 
+/* ===================== PIPELINES ===================== */
+.pipeline-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.pipeline-card{
+  background:var(--bg2);border:1px solid #1a2332;border-radius:10px;padding:20px 24px;
+  transition:all .3s;position:relative;overflow:hidden;border-left:4px solid var(--pl-color,var(--red));
+}
+.pipeline-card:hover{border-color:var(--pl-color,var(--red));transform:translateY(-2px);
+  box-shadow:0 8px 30px -8px color-mix(in srgb,var(--pl-color,var(--red)) 25%,transparent);
+}
+.pipeline-num{font-family:var(--display);font-size:11px;color:var(--pl-color,var(--red));letter-spacing:2px;margin-bottom:6px}
+.pipeline-name{font-weight:700;font-size:16px;margin-bottom:8px}
+.pipeline-name .flagship{font-family:var(--mono);font-size:10px;color:var(--amber);margin-left:8px;vertical-align:middle}
+.pipeline-stages{font-family:var(--mono);font-size:12px;color:var(--text2);line-height:1.8}
+.pipeline-lead{font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:10px;padding-top:8px;border-top:1px solid #1a2332}
+
+/* ===================== SHIELD ===================== */
+.shield-flow{display:flex;flex-direction:column;align-items:center;gap:0;max-width:600px;margin:0 auto}
+.shield-step{
+  display:flex;align-items:center;gap:16px;padding:16px 28px;width:100%;
+  background:var(--bg2);border:1px solid #1a2332;border-radius:10px;transition:all .3s;
+}
+.shield-step:hover{border-color:var(--amber);box-shadow:0 0 20px #FF8F0015}
+.shield-step.spear{border-left:4px solid var(--red)}
+.shield-step.judge{border-left:4px solid var(--amber)}
+.shield-step.shield-s{border-left:4px solid var(--cyan)}
+.shield-step.verdict{border-left:4px solid var(--green)}
+.shield-step.fix{border-left:4px solid var(--yellow)}
+.shield-icon{font-size:24px;flex-shrink:0;width:36px;text-align:center}
+.shield-text{flex:1}
+.shield-title{font-weight:700;font-size:14px}
+.shield-desc{font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:2px}
+.shield-arrow{width:2px;height:24px;background:linear-gradient(to bottom,var(--amber),transparent);position:relative}
+.shield-arrow::after{content:'▼';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);color:var(--amber);font-size:10px}
+.shield-branch{display:flex;gap:16px;width:100%;flex-wrap:wrap;justify-content:center}
+.shield-branch .shield-step{width:auto;flex:1;min-width:200px}
+
+/* ===================== BLAST RADIUS ===================== */
+.blast-list{display:flex;flex-direction:column;gap:12px;max-width:700px}
+.blast-item{
+  display:flex;align-items:center;gap:16px;padding:16px 20px;
+  background:var(--bg2);border:1px solid #1a2332;border-radius:10px;
+  border-left:4px solid var(--bl-color);transition:all .3s;
+}
+.blast-item:hover{transform:translateX(6px);border-color:var(--bl-color)}
+.blast-level{font-family:var(--display);font-size:13px;font-weight:900;color:var(--bl-color);width:48px;flex-shrink:0;text-align:center}
+.blast-info{flex:1}
+.blast-name{font-weight:600;font-size:14px}
+.blast-example{font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:2px}
+.blast-action{font-family:var(--mono);font-size:11px;color:var(--text2);white-space:nowrap}
+
+/* ===================== ARSENAL ===================== */
+.arsenal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.arsenal-group{
+  background:var(--bg2);border:1px solid #1a2332;border-radius:10px;padding:16px 20px;
+  transition:all .3s;border-top:3px solid var(--ag-color,var(--red));
+}
+.arsenal-group:hover{border-color:var(--ag-color,var(--red));transform:translateY(-2px)}
+.arsenal-cat{font-family:var(--display);font-size:11px;color:var(--ag-color,var(--red));letter-spacing:2px;margin-bottom:8px}
+.arsenal-items{font-family:var(--mono);font-size:12px;color:var(--text2);line-height:2}
+.arsenal-count{
+  text-align:center;margin-bottom:40px;font-family:var(--display);font-size:clamp(36px,5vw,56px);font-weight:900;
+  color:var(--red);line-height:1;
+}
+.arsenal-count span{font-size:clamp(14px,2vw,18px);color:var(--text3);font-weight:400;margin-left:8px;letter-spacing:2px}
+
 /* ===================== SANDBOX FLOW ===================== */
 .sandbox-flow{display:flex;flex-direction:column;align-items:center;gap:0}
 .flow-step{
@@ -413,11 +478,155 @@ footer .ver{color:var(--red);font-weight:600}
   </div>
 </section>
 
+<!-- ====== PIPELINES ====== -->
+<section id="pipelines">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">SECTION 04</div>
+      <h2 class="section-title">作战流水线 · BATTLE PIPELINES</h2>
+    </div>
+    <div class="pipeline-grid">
+      <div class="pipeline-card reveal" style="--pl-color:var(--red)">
+        <div class="pipeline-num">PIPELINE 01</div>
+        <div class="pipeline-name">软件产品全生命周期 <span class="flagship">旗舰</span></div>
+        <div class="pipeline-stages">情报侦察 → 产品规划 → 并行开发 → 质量关卡 → 加密发布 → 上线运营</div>
+        <div class="pipeline-lead">主导：第四师 · 协同：全军参与（6阶段）</div>
+      </div>
+      <div class="pipeline-card reveal" style="--pl-color:var(--green)">
+        <div class="pipeline-num">PIPELINE 02</div>
+        <div class="pipeline-name">ComfyUI 插件开发</div>
+        <div class="pipeline-stages">情报 → 开发 → 验证 → 发布</div>
+        <div class="pipeline-lead">主导：4-01 · 协同：五师+二师+安全局+一师+三师</div>
+      </div>
+      <div class="pipeline-card reveal" style="--pl-color:var(--amber)">
+        <div class="pipeline-num">PIPELINE 03</div>
+        <div class="pipeline-name">安全攻防</div>
+        <div class="pipeline-stages">防御加密 / 攻击逆向 / 安全评估</div>
+        <div class="pipeline-lead">主导：安全局 · 协同：五师+质监局+档案局</div>
+      </div>
+      <div class="pipeline-card reveal" style="--pl-color:#AB47BC">
+        <div class="pipeline-num">PIPELINE 04</div>
+        <div class="pipeline-name">小说创作</div>
+        <div class="pipeline-stages">创作 → 包装 → 推广</div>
+        <div class="pipeline-lead">主导：第一师 · 协同：五师+二师+三师+humanizer</div>
+      </div>
+      <div class="pipeline-card reveal" style="--pl-color:var(--cyan)">
+        <div class="pipeline-num">PIPELINE 05</div>
+        <div class="pipeline-name">短剧 / 漫剧制作</div>
+        <div class="pipeline-stages">策划 → 制作 → 发行</div>
+        <div class="pipeline-lead">主导：三师+二师 · 协同：五师+安全局+质监局+档案局</div>
+      </div>
+      <div class="pipeline-card reveal" style="--pl-color:var(--yellow)">
+        <div class="pipeline-num">PIPELINE 06</div>
+        <div class="pipeline-name">数据情报</div>
+        <div class="pipeline-stages">采集 → 分析 → 输出</div>
+        <div class="pipeline-lead">主导：第五师 · 协同：安全局+一师+二师+档案局</div>
+      </div>
+      <div class="pipeline-card reveal" style="--pl-color:#E91E63">
+        <div class="pipeline-num">PIPELINE 07</div>
+        <div class="pipeline-name">品牌建设</div>
+        <div class="pipeline-stages">调研 → 设计 → 传播</div>
+        <div class="pipeline-lead">主导：第二师 · 协同：五师+一师+三师+质监局</div>
+      </div>
+      <div class="pipeline-card reveal" style="--pl-color:#2196F3">
+        <div class="pipeline-num">PIPELINE 08</div>
+        <div class="pipeline-name">PPT 制作</div>
+        <div class="pipeline-stages">素材 → 文案 → 设计 → 审核</div>
+        <div class="pipeline-lead">主导：1-04+二师 · 协同：五师+质监局</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SPEAR & SHIELD ====== -->
+<section id="shield">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">SECTION 05</div>
+      <h2 class="section-title">矛与盾验证 · SPEAR & SHIELD</h2>
+    </div>
+    <div class="shield-flow reveal">
+      <div class="shield-step spear"><div class="shield-icon">⚔️</div><div class="shield-text"><div class="shield-title">矛 · 实施专家完成任务</div><div class="shield-desc">开发/脚本/Skill/数据处理类产出</div></div></div>
+      <div class="shield-arrow"></div>
+      <div class="shield-step judge"><div class="shield-icon">🦞</div><div class="shield-text"><div class="shield-title">阿极判断：是否属于可验证类型？</div><div class="shield-desc">否 → 直接进入汇总汇报</div></div></div>
+      <div class="shield-arrow"></div>
+      <div class="shield-step shield-s"><div class="shield-icon">🛡️</div><div class="shield-text"><div class="shield-title">盾 · 独立验证者对抗性测试</div><div class="shield-desc">质监局 / D-07 · 只读权限 · 实施者 ≠ 验证者</div></div></div>
+      <div class="shield-arrow"></div>
+      <div class="shield-branch">
+        <div class="shield-step verdict"><div class="shield-icon">✅</div><div class="shield-text"><div class="shield-title">PASS / PARTIAL</div><div class="shield-desc">进入汇总汇报</div></div></div>
+        <div class="shield-step fix"><div class="shield-icon">🔄</div><div class="shield-text"><div class="shield-title">FAIL → 返回修复</div><div class="shield-desc">重新验证（最多 2 轮）</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== BLAST RADIUS ====== -->
+<section id="blast">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">SECTION 06</div>
+      <h2 class="section-title">爆炸半径权限 · BLAST RADIUS</h2>
+    </div>
+    <div class="blast-list reveal">
+      <div class="blast-item" style="--bl-color:var(--green)"><span class="blast-level">无害</span><div class="blast-info"><div class="blast-name">读取文件、搜索信息、分析数据</div></div><span class="blast-action">自动放行</span></div>
+      <div class="blast-item" style="--bl-color:var(--cyan)"><span class="blast-level">局部</span><div class="blast-info"><div class="blast-name">写入单个文件、创建目录</div></div><span class="blast-action">子Agent 自主执行</span></div>
+      <div class="blast-item" style="--bl-color:var(--amber)"><span class="blast-level">中等</span><div class="blast-info"><div class="blast-name">修改多个文件、安装依赖</div></div><span class="blast-action">需阿极确认</span></div>
+      <div class="blast-item" style="--bl-color:var(--red)"><span class="blast-level">高危</span><div class="blast-info"><div class="blast-name">删除数据、外发信息、涉及金钱</div></div><span class="blast-action">必须用户确认</span></div>
+      <div class="blast-item" style="--bl-color:#AB47BC"><span class="blast-level">致命</span><div class="blast-info"><div class="blast-name">覆盖原始数据、不可逆操作</div></div><span class="blast-action">安全局否决 + 用户确认</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== ARSENAL ====== -->
+<section id="arsenal">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">SECTION 07</div>
+      <h2 class="section-title">武器库 · SKILL ARSENAL</h2>
+    </div>
+    <div class="arsenal-count reveal">30+<span>SKILL MODULES</span></div>
+    <div class="arsenal-grid">
+      <div class="arsenal-group reveal" style="--ag-color:var(--red)">
+        <div class="arsenal-cat">创作</div>
+        <div class="arsenal-items">novel-master<br>novel-creator<br>humanizer<br>write-article<br>docx</div>
+      </div>
+      <div class="arsenal-group reveal" style="--ag-color:#AB47BC">
+        <div class="arsenal-cat">设计</div>
+        <div class="arsenal-items">frontend-design<br>svg<br>html-to-image<br>flexicomic<br>comicmaster</div>
+      </div>
+      <div class="arsenal-group reveal" style="--ag-color:var(--amber)">
+        <div class="arsenal-cat">视频</div>
+        <div class="arsenal-items">short-drama-generator<br>screenwriter<br>anime-storyboard</div>
+      </div>
+      <div class="arsenal-group reveal" style="--ag-color:var(--green)">
+        <div class="arsenal-cat">开发</div>
+        <div class="arsenal-items">ci-cd<br>cicd-expert<br>ci-cd-pipelines</div>
+      </div>
+      <div class="arsenal-group reveal" style="--ag-color:var(--cyan)">
+        <div class="arsenal-cat">情报</div>
+        <div class="arsenal-items">data-analyst<br>html-report<br>multi-search<br>playwright-cli</div>
+      </div>
+      <div class="arsenal-group reveal" style="--ag-color:var(--yellow)">
+        <div class="arsenal-cat">安全</div>
+        <div class="arsenal-items">security-auditor<br>full-security-scan</div>
+      </div>
+      <div class="arsenal-group reveal" style="--ag-color:#2196F3">
+        <div class="arsenal-cat">PPT</div>
+        <div class="arsenal-items">elite-powerpoint-designer<br>slide-studio<br>pptx-generation<br>pptx</div>
+      </div>
+      <div class="arsenal-group reveal" style="--ag-color:var(--gray)">
+        <div class="arsenal-cat">通用</div>
+        <div class="arsenal-items">pdf<br>xlsx</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ====== SANDBOX ====== -->
 <section id="sandbox">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">SECTION 04</div>
+      <div class="section-label">SECTION 08</div>
       <h2 class="section-title">打靶场机制 · SANDBOX TESTING</h2>
     </div>
     <div class="sandbox-flow reveal">
@@ -441,7 +650,7 @@ footer .ver{color:var(--red);font-weight:600}
 <section id="timeline-sec">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">SECTION 05</div>
+      <div class="section-label">SECTION 09</div>
       <h2 class="section-title">定时任务 · DAILY SCHEDULE</h2>
     </div>
     <div class="timeline reveal">
@@ -461,7 +670,7 @@ footer .ver{color:var(--red);font-weight:600}
 <section id="commands">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">SECTION 06</div>
+      <div class="section-label">SECTION 10</div>
       <h2 class="section-title">快捷命令 · QUICK COMMANDS</h2>
     </div>
     <div class="terminal reveal">
