@@ -100,6 +100,20 @@ dashboard.html        # 军团可视化大屏
 | 「强制执行 [任务名]」 | 立即执行（P2） |
 | 「回滚到上一版本」 | 调度档案局回滚 |
 
+## 💝 支持作者
+
+如果这个项目对你有帮助，欢迎赞助支持！
+
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/AI-wuji/wuji-lobster-legion/main/%E8%B5%9E%E8%B5%8F%E7%A0%81.jpg" width="250" alt="赞赏码"><br>
+
+<b>微信赞赏码</b><br><br>
+
+**感谢支持！**
+
+</div>
+
 ## License
 
 MIT
