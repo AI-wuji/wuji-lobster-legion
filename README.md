@@ -260,6 +260,21 @@ If this project helps you, feel free to support!
 
 ---
 
+## 更新日志 / Changelog
+
+| 版本 Version | 日期 Date | 更新内容 Changes |
+|:---:|:---:|---|
+| **v6.12** | 2026-04-02 | 可视化大屏全面升级：新增中英双语支持、10 大板块完整展示、赞赏码模块、布局居中优化；README 重写为双语格式；GitHub Pages 部署上线 |
+| | | Dashboard overhaul: bilingual CN/EN support, 10-section layout, donation QR module, centered layout; README rewritten bilingual; GitHub Pages live |
+| **v6.11** | 2026-03 | 打靶场版：新增打靶场机制（沙盒隔离测试新 Skill）、安全局扩编至 7 人（+打靶场管理员、测试工程师）、定时任务系统（5 项自动化日程）、可视化大屏初版 |
+| | | Sandbox edition: added Sandbox Testing mechanism, Security Bureau expanded to 7 (+Range Officer, Test Engineer), scheduled tasks system (5 automated jobs), initial dashboard |
+| **v6.0** | 2026-02 | 正式版架构确立：40 单位编制定型、8 条作战流水线、矛与盾验证机制、爆炸半径五级权限体系、30+ Skill 武器库 |
+| | | Architecture established: 40-unit roster finalized, 8 battle pipelines, Spear & Shield verification, Blast Radius 5-tier permissions, 30+ Skill arsenal |
+| **v5.x** | 2026-01 | 早期迭代：六大作战师 + 三大监察机构基本框架、指挥链原型、核心 Skill 集成 |
+| | | Early iterations: 6 divisions + 3 oversight agencies framework, command chain prototype, core Skill integration |
+
+---
+
 ## License
 
 MIT
