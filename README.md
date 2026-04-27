@@ -1,290 +1,187 @@
-<div align="center">
+# 🦞 无极龙虾军团 v7.1
 
-[![Version](https://img.shields.io/badge/VERSION-v6.12-E53935.svg)](https://github.com/AI-wuji/wuji-lobster-legion)
-[![License](https://img.shields.io/badge/LICENSE-MIT-green.svg)](LICENSE)
-[![Units](https://img.shields.io/badge/UNITS-40-blue.svg)]()
-[![Experts](https://img.shields.io/badge/EXPERTS-38-orange.svg)]()
+**一句话**: 真并发多Agent协作系统，所有部门动态流水线作战  
+**适配架构**: llama.cpp (Hermes) 原生多会话并行
 
-# 🦞 无极龙虾军团
-
-## Wuji Lobster Legion
-
-**一句话 / One Sentence:**
-40 个 AI 专家，军事化管理，流水线协同作战。
-40 AI Experts, Military-style Management, Pipeline-driven Collaboration.
-
-📺 [**在线大屏 / Live Dashboard**](https://ai-wuji.github.io/wuji-lobster-legion/)
-
-</div>
+📺 [在线大屏](https://ai-wuji.github.io/wuji-lobster-legion/) | 📋 [更新日志](./CHANGELOG.md)
 
 ---
 
-## 这是什么？ / What is this?
+## 🎯 这是什么？
 
-<table>
-<tr>
-<td width="50%">
+🦞 **无极龙虾军团** 是一个基于 **llama.cpp (Hermes)** 的 AI 多智能体协作系统。
 
-### 中文
+以**军事指挥链**为架构，通过**真并发**（多会话并行）实现多专家同时执行任务，覆盖从情报调研、软件开发、内容创作到安全攻防的全链路任务。
 
-🦞 无极龙虾军团是一个基于 Claude Code 的 AI 多智能体协作系统。以军事指挥链为架构，40 个专业单位通过流水线驱动、跨部门协同，覆盖从情报调研、软件开发、内容创作、视觉设计、视频制作到安全攻防的全链路任务。
+### 核心优势
 
-**核心优势：**
-- 🎖️ **军事化指挥链** — 你只管下令，阿极替你指挥全军
-- ⚔️ **禁止单兵作战** — 8 条流水线，多部门自动协同
-- 🛡️ **矛与盾验证** — 实施者 ≠ 验证者，对抗性测试
-- 🔒 **爆炸半径权限** — 5 级安全管控，致命操作一票否决
-- 🔧 **30+ Skill 武器库** — 创作/设计/开发/安全/情报全覆盖
-
-</td>
-<td width="50%">
-
-### English
-
-🦞 Wuji Lobster Legion is a multi-agent AI collaboration system built on Claude Code. Using a military command chain architecture, 40 specialized units work through pipeline-driven, cross-department coordination, covering the full spectrum from intelligence research, software development, content creation, visual design, video production to security operations.
-
-**Key Advantages:**
-- 🎖️ **Military Command Chain** — Just give orders, A-Ji commands the entire army
-- ⚔️ **No Solo Operations** — 8 pipelines, automatic multi-department coordination
-- 🛡️ **Spear & Shield Verification** — Implementer ≠ Verifier, adversarial testing
-- 🔒 **Blast Radius Permissions** — 5-tier security control, veto on fatal ops
-- 🔧 **30+ Skill Arsenal** — Writing/Design/Dev/Security/Intel fully covered
-
-</td>
-</tr>
-</table>
+| 特性 | 说明 |
+|------|------|
+| 🎖️ **真并发执行** | Hermes原生多会话并行，专家同时运行 |
+| ⚔️ **完整作战流水线** | 情报→执行→质检→安全→归档，全部门参与 |
+| 🛡️ **打靶场机制** | 新技能/MCP必须经过沙盒隔离测试 |
+| 🔒 **爆炸半径权限** | 5级安全管控，致命操作一票否决 |
+| 🔧 **动态扩编** | 没有就创建，按需增减，不固定数量 |
+| 📊 **动态流水线** | 每次任务自动生成最优执行方案 |
 
 ---
 
-## 核心架构 / Core Architecture
+## 🏛️ 核心架构
 
 ```
-用户 User (EE37)
+用户 (EE37) - 最高指挥权
     ↓
-阿极 A-Ji（总指挥 Commander / 秘书 Secretary）← 唯一对接窗口 Sole Interface
+阿极（总指挥/秘书）- 唯一对接窗口
     ↓
-参谋本部 General Staff (P-01) ← 需求分析 Analysis + 任务拆解 Decomposition + 智能调度 Dispatch
+参谋本部 (P-01) - 分析、调度、验收
+    ↓ 真并发
+┌─────────┬─────────┬─────────┐
+│  专家A  │  专家B  │  专家C  │  ← 同时执行
+│ (会话1) │ (会话2) │ (会话3) │
+└─────────┴─────────┴─────────┘
     ↓
-六大作战师 6 Divisions (24 Experts) + 独立监察机构 Oversight (14 Experts)
+质监局 + 安全局 + 档案局（并行审核）
     ↓
-阿极汇总 A-Ji Summary → 用户 User
+阿极汇总 → 用户
 ```
 
 ---
 
-## 编制总览 / Organization（40 单位 Units）
+## 📋 编制总览（动态扩编）
 
-<table>
-<tr>
-<th>单位 Unit</th>
-<th>人数 Count</th>
-<th>核心能力 Core Capabilities</th>
-</tr>
-<tr><td>🎖️ 指挥部 Command</td><td>2</td><td>阿极（总指挥 Commander）+ 参谋本部（调度 Dispatch）</td></tr>
-<tr><td>📝 第一师·内容作战师<br>Div.1 Content Ops</td><td>4</td><td>技术文档 Tech Docs、商业文案 Business Copy、社媒 Social Media、PPT</td></tr>
-<tr><td>🎨 第二师·视觉作战师<br>Div.2 Visual Ops</td><td>5</td><td>UI/UX、品牌 VI Brand、AI 出图 AI Image、封面 Cover、图标 Icon</td></tr>
-<tr><td>🎬 第三师·视频作战师<br>Div.3 Video Ops</td><td>3</td><td>剪辑 Editing、编导 Directing、画质优化 Enhancement</td></tr>
-<tr><td>💻 第四师·软件开发师<br>Div.4 Software Dev</td><td>4</td><td>ComfyUI 插件 Plugin、桌面 Desktop、小程序 Mini-App、App</td></tr>
-<tr><td>🔍 第五师·情报作战师<br>Div.5 Intelligence Ops</td><td>5</td><td>网络调研 Web Research、学术 Academic、市场 Market、爬虫 Crawler、分析 Analysis</td></tr>
-<tr><td>🔧 第六师·支援作战师<br>Div.6 Support Ops</td><td>3</td><td>自动化 Automation、通讯 Comms、技能安装 Skill Install</td></tr>
-<tr><td>🔒 安全局 Security Bureau</td><td>7</td><td>代码审计 Code Audit、加密 Crypto、逆向 Reverse、渗透 Pentest、沙盒 Sandbox</td></tr>
-<tr><td>📋 质监局 QA Bureau</td><td>3</td><td>产出审核 Review、合规 Compliance、质量验收 Quality Acceptance</td></tr>
-<tr><td>🗄️ 档案局 Archives Bureau</td><td>4</td><td>版本归档 Versioning、灾难恢复 Recovery、加密存储 Encrypted Storage</td></tr>
-</table>
+| 单位 | 职责 | 状态 |
+|------|------|------|
+| 🎖️ **指挥部** | 阿极 + 参谋本部 | 常驻 |
+| 📝 **第一师** | 内容作战（写手、PPT） | 按需召唤 |
+| 🎨 **第二师** | 视觉作战（UI、AI出图） | 按需召唤 |
+| 🎬 **第三师** | 视频作战（剪辑、编导） | 按需召唤 |
+| 💻 **第四师** | 软件开发（ComfyUI、前端） | 按需召唤 |
+| 🔍 **第五师** | 情报作战（调研、分析） | 情报先行 |
+| 🔧 **第六师** | 支援作战（自动化、技能） | 按需召唤 |
+| 🔒 **安全局** | 安全审计 + 打靶场 | 强制审核 |
+| 📋 **质监局** | 质量审核 | 强制审核 |
+| 🗄️ **档案局** | 版本归档 | 强制归档 |
 
 ---
 
-## 运作机制 / How It Works
-
-<table>
-<tr>
-<td width="50%">
-
-### 中文
-
-#### 流水线驱动，禁止单兵作战
-
-任何用户指令自动匹配 8 条作战流水线之一，多部门协同执行：
-
-1. **软件产品全生命周期**（旗舰）
-2. **ComfyUI 插件开发**
-3. **安全攻防**
-4. **小说创作**
-5. **短剧/漫剧制作**
-6. **数据情报**
-7. **品牌建设**
-8. **PPT 制作**
-
-#### 矛与盾验证机制
-
-实施专家完成任务（矛）后，独立验证者（盾）以只读权限进行对抗性测试，出具 PASS / FAIL / PARTIAL 判定。实施者和验证者必须是不同的 Agent。
-
-#### 爆炸半径权限体系
-
-| 级别 | 处理方式 |
-|------|---------|
-| 无害 | 自动放行 |
-| 局部 | 子 Agent 自主执行 |
-| 中等 | 需阿极确认 |
-| 高危 | 必须用户确认 |
-| 致命 | 安全局一票否决 + 用户确认 |
-
-</td>
-<td width="50%">
-
-### English
-
-#### Pipeline-driven, No Solo Operations
-
-Every user command is automatically matched to one of 8 battle pipelines with multi-department coordination:
-
-1. **Full Software Product Lifecycle** (Flagship)
-2. **ComfyUI Plugin Development**
-3. **Security Offense & Defense**
-4. **Novel Writing**
-5. **Short Drama / Comic Production**
-6. **Data Intelligence**
-7. **Brand Building**
-8. **Presentation Design**
-
-#### Spear & Shield Verification
-
-After the implementer (Spear) completes the task, an independent verifier (Shield) conducts adversarial testing with read-only access, issuing PASS / FAIL / PARTIAL verdicts. Implementer and verifier must be different Agents.
-
-#### Blast Radius Permission System
-
-| Level | Handling |
-|-------|---------|
-| Safe | Auto-approve |
-| Local | Agent self-execute |
-| Medium | A-Ji approval required |
-| High | User confirmation required |
-| Fatal | Security veto + User confirmation |
-
-</td>
-</tr>
-</table>
-
----
-
-## 武器库 / Skill Arsenal
-
-装备 30+ 个 Skill 技能模块 / Equipped with 30+ Skill modules:
-
-| 分类 Category | 模块 Modules |
-|--------------|-------------|
-| 创作 Writing | novel-master, novel-creator, humanizer, write-article, docx |
-| 设计 Design | frontend-design, svg, html-to-image, flexicomic, comicmaster |
-| 视频 Video | short-drama-generator, screenwriter, anime-storyboard |
-| 开发 Dev | ci-cd, cicd-expert |
-| 情报 Intel | data-analyst, html-report, multi-search, playwright-cli |
-| 安全 Security | security-auditor, full-security-scan |
-| PPT Slides | elite-powerpoint-designer, slide-studio, pptx-generation |
-| 通用 General | pdf, xlsx |
-
----
-
-## 安装使用 / Installation
-
-<table>
-<tr>
-<td width="50%">
-
-### 中文
-
-将 `.claude/skills/lobster-legion/skill.md` 放入你的 Claude Code 项目的对应目录即可激活无极龙虾军团。
-
-</td>
-<td width="50%">
-
-### English
-
-Place `.claude/skills/lobster-legion/skill.md` into the corresponding directory of your Claude Code project to activate the Lobster Legion.
-
-</td>
-</tr>
-</table>
-
----
-
-## 快捷命令 / Quick Commands
-
-| 命令 Command | 功能 Function |
-|-------------|--------------|
-| 「查看军团状态」 | 汇报各师待命情况 Report all divisions' status |
-| 「紧急召唤 [专家名]！」 | 跳过分析，直接调度 Emergency call, skip HQ (P0) |
-| 「跳过到详报」 | 切换详报版输出 Switch to detailed report |
-| 「只要快讯」 | 切换快讯版输出 Brief summary only |
-| 「强制执行 [任务名]」 | 立即执行 Force execute (P2) |
-| 「回滚到上一版本」 | 调度档案局回滚 Rollback to last stable |
-
----
-
-## 文件结构 / File Structure
+## ⚔️ 完整作战流水线
 
 ```
-.claude/skills/lobster-legion/
-└── skill.md          # 完整作战技能文档 Full skill document (818 lines)
-index.html            # 军团可视化大屏 Interactive dashboard
-dashboard.html        # 大屏副本 Dashboard copy
+用户指令
+    ↓
+【参谋本部】分析 → 生成作战方案
+    ↓
+【第五师】情报先行（并行收集）
+    ↓
+【作战师】真并发执行
+    ↓
+【质监局】质量审核（并行）
+    ↓
+【安全局】安全审计
+    ├─ 新技能？→ 打靶场沙盒测试
+    ├─ 代码？→ 代码安全审计
+    └─ 系统？→ 系统安全扫描
+    ↓
+【档案局】自动归档备份
+    ↓
+【参谋本部】最终验收
+    ↓
+阿极汇报
 ```
 
 ---
 
-## 💝 支持作者 / Support the Author
+## 🛡️ 打靶场（沙盒）机制
 
-<table>
-<tr>
-<td width="50%">
+**触发条件**：
+- 新Skill安装
+- 新MCP配置
+- 专家扩编/融合
+- 重大配置变更
+
+**测试维度**：
+- ✅ 功能测试（100%通过）
+- ✅ 安全测试（无高风险）
+- ✅ 兼容性测试（无冲突）
+- ✅ 性能测试（影响<5%）
+
+---
+
+## 🔒 爆炸半径权限
+
+| 级别 | 风险 | 并发限制 | 示例 |
+|------|------|---------|------|
+| 🟢 无害 | 自动放行 | 无限制 | 搜索查询 |
+| 🟡 局部 | 自主执行 | 最多5并发 | 文件读写 |
+| 🟠 中等 | 需确认 | 最多3并发 | API调用 |
+| 🔴 高危 | 用户确认 | 最多1并发 | 系统命令 |
+| ⚫ 致命 | 一票否决 | 禁止并发 | 删除/外发 |
+
+---
+
+## 🚀 快速开始
+
+### 安装
+
+```bash
+# 克隆仓库
+git clone https://github.com/AI-wuji/wuji-lobster-legion.git
+
+# 进入目录
+cd wuji-lobster-legion
+
+# 部署技能到Hermes
+ cp -r skills/* /path/to/hermes/wuji-skills/
+```
+
+### 使用
+
+1. 启动Hermes服务器
+2. 打开聊天界面
+3. 直接下达指令，阿极会自动调度全军
+
+### 快捷命令
+
+| 命令 | 功能 |
+|------|------|
+| 「查看军团状态」 | 汇报各师待命情况 |
+| 「紧急召唤 [专家]」 | 跳过分析直接调度 |
+| 「只要快讯」 | 一句结论 |
+| 「详报版」 | 完整过程 |
+| 「回滚」 | 恢复上一版本 |
+
+---
+
+## 📁 文件结构
+
+```
+wuji-lobster-legion/
+├── skills/
+│   ├── wuji-core/SKILL.md      # 核心系统架构
+│   └── wuji-staff/SKILL.md     # 参谋本部调度
+├── CHANGELOG.md                 # 更新日志
+└── README.md                    # 本文件
+```
+
+---
+
+## 📊 版本历史
+
+| 版本 | 日期 | 重大更新 |
+|------|------|---------|
+| **v7.1** | 2026-04-27 | Hermes真并发架构，完整作战流水线 |
+| v6.12 | 2026-04-02 | 可视化大屏，双语支持 |
+| v6.11 | 2026-03-17 | 打靶场机制，安全局扩编 |
+| v6.0 | 2026-02 | 40单位编制定型，8条流水线 |
+
+---
+
+## 💝 支持作者
 
 如果这个项目对你有帮助，欢迎赞助支持！
 
-</td>
-<td width="50%">
-
-If this project helps you, feel free to support!
-
-</td>
-</tr>
-</table>
-
-<div align="center">
-
-<img src="https://raw.githubusercontent.com/AI-wuji/wuji-lobster-legion/main/%E8%B5%9E%E8%B5%8F%E7%A0%81.jpg" width="250" alt="赞赏码 Donation QR">
-
-**微信赞赏码 / WeChat Donation QR Code**
-
-感谢支持！Thank you for your support!
-
-</div>
-
 ---
 
-## 更新日志 / Changelog
+**🦞 阿极在此，全军待命。请下达指令！**
 
-| 版本 Version | 日期 Date | 更新内容 Changes |
-|:---:|:---:|---|
-| **v6.12** | 2026-04-02 | 可视化大屏全面升级：新增中英双语支持、10 大板块完整展示、赞赏码模块、布局居中优化；README 重写为双语格式；GitHub Pages 部署上线 |
-| | | Dashboard overhaul: bilingual CN/EN support, 10-section layout, donation QR module, centered layout; README rewritten bilingual; GitHub Pages live |
-| **v6.11** | 2026-03 | 打靶场版：新增打靶场机制（沙盒隔离测试新 Skill）、安全局扩编至 7 人（+打靶场管理员、测试工程师）、定时任务系统（5 项自动化日程）、可视化大屏初版 |
-| | | Sandbox edition: added Sandbox Testing mechanism, Security Bureau expanded to 7 (+Range Officer, Test Engineer), scheduled tasks system (5 automated jobs), initial dashboard |
-| **v6.0** | 2026-02 | 正式版架构确立：40 单位编制定型、8 条作战流水线、矛与盾验证机制、爆炸半径五级权限体系、30+ Skill 武器库 |
-| | | Architecture established: 40-unit roster finalized, 8 battle pipelines, Spear & Shield verification, Blast Radius 5-tier permissions, 30+ Skill arsenal |
-| **v5.x** | 2026-01 | 早期迭代：六大作战师 + 三大监察机构基本框架、指挥链原型、核心 Skill 集成 |
-| | | Early iterations: 6 divisions + 3 oversight agencies framework, command chain prototype, core Skill integration |
-
----
-
-## License
-
-MIT
-
----
-
-<div align="center">
-
-> 🦞 阿极在此，40 单位待命。请下达指令。
->
-> 🦞 A-Ji here, 40 units standing by. Awaiting your orders.
-
-</div>
+**License**: MIT
